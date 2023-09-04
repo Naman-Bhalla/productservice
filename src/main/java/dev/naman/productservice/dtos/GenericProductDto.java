@@ -1,14 +1,15 @@
-package dev.naman.productservice.models;
+package dev.naman.productservice.dtos;
 
+import dev.naman.productservice.models.Category;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Product extends BaseModel {
+public class GenericProductDto {
     private String title;
     private String description;
     private String image;
-    private Category category;
+    private String category;
     private double price;
 }

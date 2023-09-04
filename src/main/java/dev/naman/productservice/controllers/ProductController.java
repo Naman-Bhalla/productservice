@@ -1,5 +1,10 @@
 package dev.naman.productservice.controllers;
 
+import dev.naman.productservice.dtos.GenericProductDto;
+import dev.naman.productservice.services.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -7,6 +12,23 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
+//    @Autowired
+    // field injection
+    private ProductService productService;
+
+    // constructor injection
+//    @Autowired
+    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService) {
+        this.productService = productService;
+    }
+//
+
+    // setter injection
+//    @Autowired
+//    public void setProductService(ProductService productService) {
+//        this.productService = productService;
+//    }
+
     @GetMapping
     public void getAllProducts() {
 
@@ -15,8 +37,8 @@ public class ProductController {
     // localhost:8080/products/{id}
     // localhost:8080/products/123
     @GetMapping("{id}")
-    public String getProductById(@PathVariable("id") Long id) {
-        return "Here is product id: " + id;
+    public GenericProductDto getProductById(@PathVariable("id") Long id) {
+        return productService.getProductById(id);
     }
 
     @DeleteMapping("{id}")

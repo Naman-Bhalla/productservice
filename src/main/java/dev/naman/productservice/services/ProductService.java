@@ -5,5 +5,7 @@ import dev.naman.productservice.models.Product;
 
 public interface ProductService {
 
+    GenericProductDto createProduct(GenericProductDto product);
+
     GenericProductDto getProductById(Long id);
 }

@@ -14,3 +14,5 @@ public class FakeStoreProductDto {
     private String description;
     private String image;
 }
+
+// Break till 10:35

@@ -1,8 +1,12 @@
 package dev.naman.productservice.controllers;
 
+import dev.naman.productservice.dtos.ExceptionDto;
 import dev.naman.productservice.dtos.GenericProductDto;
+import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,6 +17,10 @@ public class ProductController {
 //    @Autowired
     // field injection
     private ProductService productService;
+    // ....;
+    // ...;
+
+
 
     // constructor injection
 //    @Autowired
@@ -36,13 +44,16 @@ public class ProductController {
     // localhost:8080/products/{id}
     // localhost:8080/products/123
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) {
+    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
         return productService.getProductById(id);
     }
 
     @DeleteMapping("{id}")
-    public void deleteProductById() {
-
+    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
+        return new ResponseEntity<>(
+                productService.deleteProduct(id),
+                HttpStatus.OK
+        );
     }
 
     @PostMapping

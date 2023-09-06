@@ -1,11 +1,14 @@
 package dev.naman.productservice.services;
 
 import dev.naman.productservice.dtos.GenericProductDto;
-import dev.naman.productservice.models.Product;
+
+import java.util.List;
 
 public interface ProductService {
 
     GenericProductDto createProduct(GenericProductDto product);
 
     GenericProductDto getProductById(Long id);
+
+    List<GenericProductDto> getAllProducts();
 }

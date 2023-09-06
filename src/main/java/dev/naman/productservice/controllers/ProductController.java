@@ -2,12 +2,10 @@ package dev.naman.productservice.controllers;
 
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.services.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.UUID;
+import java.util.List;
 
 @RestController
 @RequestMapping("/products")
@@ -29,9 +27,10 @@ public class ProductController {
 //        this.productService = productService;
 //    }
 
+    // GET /products {}
     @GetMapping
-    public void getAllProducts() {
-
+    public List<GenericProductDto> getAllProducts() {
+        return productService.getAllProducts();
     }
 
     // localhost:8080/products/{id}

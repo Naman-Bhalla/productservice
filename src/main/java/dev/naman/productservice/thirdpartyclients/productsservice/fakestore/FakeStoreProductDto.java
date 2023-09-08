@@ -1,4 +1,4 @@
-package dev.naman.productservice.dtos;
+package dev.naman.productservice.thirdpartyclients.productsservice.fakestore;
 
 import dev.naman.productservice.models.Category;
 import lombok.Getter;

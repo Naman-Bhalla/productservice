@@ -1,10 +1,9 @@
-package dev.naman.productservice.inheritancedemo.singletable;
+package dev.naman.productservice.inheritancedemo.joinedtable;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository("st_ur")
+@Repository("jt_ur")
 public interface UserRepository
 extends JpaRepository<User, Long> {
 

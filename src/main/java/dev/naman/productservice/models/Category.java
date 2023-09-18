@@ -14,9 +14,9 @@ import java.util.List;
 public class Category extends BaseModel {
     @Column
     private String name;
-//
-//    @OneToMany(mappedBy = "category")
-//    private List<Product> products = new ArrayList<>();
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products = new ArrayList<>();
     // this is the same relation being mapped by category attribute in the other (Product) class
 }
 // class Group {

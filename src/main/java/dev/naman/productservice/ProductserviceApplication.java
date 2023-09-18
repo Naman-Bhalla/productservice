@@ -5,9 +5,13 @@ import dev.naman.productservice.inheritancedemo.joinedtable.MentorRepository;
 import dev.naman.productservice.inheritancedemo.joinedtable.User;
 import dev.naman.productservice.inheritancedemo.joinedtable.UserRepository;
 import dev.naman.productservice.models.Category;
+import dev.naman.productservice.models.Price;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
+import dev.naman.productservice.repositories.PriceRepository;
 import dev.naman.productservice.repositories.ProductRepository;
+import jakarta.transaction.Transactional;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,15 +29,18 @@ public class ProductserviceApplication implements CommandLineRunner {
     private UserRepository userRepository;
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
+    private final PriceRepository priceRepository;
 
     public ProductserviceApplication(@Qualifier("jt_mr") MentorRepository mentorRepository,
                                      @Qualifier("jt_ur") UserRepository userRepository,
                                      ProductRepository productRepository,
-                                     CategoryRepository categoryRepository) {
+                                     CategoryRepository categoryRepository,
+                                     PriceRepository priceRepository) {
         this.mentorRepository = mentorRepository;
         this.userRepository = userRepository;
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.priceRepository = priceRepository;
     }
 
     public static void main(String[] args) {
@@ -60,24 +67,31 @@ public class ProductserviceApplication implements CommandLineRunner {
 
         Category category = new Category();
         category.setName("Apple Devices");
-        Category savedCategory = categoryRepository.save(category);
+//        Category savedCategory = categoryRepository.save(category);
+
+        Price price = new Price("Rupee", 10);
+//        Price savedPrice = priceRepository.save(price);
 
         Product product = new Product();
         product.setTitle("iPhone 15 Pro");
         product.setDescription("The best iPhone Ever");
-        product.setCategory(savedCategory);
+        product.setCategory(category);
+        product.setPrice(price);
 
         productRepository.save(product);
 
-        Category category1 = categoryRepository.findById(UUID.fromString("5e6f679e-f326-44ae-b220-544b3822ab00")).get();
-        System.out.println("Category name is: " + category1.getName());
-        System.out.println("Printing all products in the category");
-        Thread.sleep(1000);
+        productRepository.deleteById(UUID.fromString("95672ed6-3127-4248-ae33-97a261c0a6f4"));
+
+//        Category category1 = categoryRepository.findById(UUID.fromString("5e6f679e-f326-44ae-b220-544b3822ab00")).get();
+//        System.out.println("Category name is: " + category1.getName());
+//        System.out.println("Printing all products in the category");
+////        Thread.sleep(1000);
 //
+//        System.out.println(category1.getProducts().size());
 //        category1.getProducts().forEach(
 //                product1 -> System.out.println(product1.getTitle())
 //        );
-
+//
 //        for (Product product1: category1.getProducts()) {
 //            try {
 //                System.out.println(product1.getTitle());

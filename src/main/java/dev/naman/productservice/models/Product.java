@@ -1,8 +1,6 @@
 package dev.naman.productservice.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -18,7 +16,11 @@ public class Product extends BaseModel {
     // => L to R: 1 : 1
     // => R to L: m : 1
     // => Ans:    m : 1
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "category")
     private Category category;
-    private double price;
+
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private Price price;
+//    private double price;
 }

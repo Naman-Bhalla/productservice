@@ -80,7 +80,7 @@ public class ProductserviceApplication implements CommandLineRunner {
 
         productRepository.save(product);
 
-        productRepository.deleteById(UUID.fromString("95672ed6-3127-4248-ae33-97a261c0a6f4"));
+        //productRepository.deleteById(UUID.fromString("95672ed6-3127-4248-ae33-97a261c0a6f4"));
 
 //        Category category1 = categoryRepository.findById(UUID.fromString("5e6f679e-f326-44ae-b220-544b3822ab00")).get();
 //        System.out.println("Category name is: " + category1.getName());

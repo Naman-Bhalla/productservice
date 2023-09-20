@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
@@ -48,10 +49,23 @@ public class ProductController {
         return productService.getProductById(id);
     }
 
+    @GetMapping("/uuid/{uuid}")
+    public GenericProductDto getProductByUUID(@PathVariable("uuid")UUID uuid) throws NotFoundException{
+        return productService.getProductById(uuid);
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(
                 productService.deleteProduct(id),
+                HttpStatus.OK
+        );
+    }
+
+    @DeleteMapping("/uuid/{uuid}")
+    public ResponseEntity<GenericProductDto> deleteProductByUUID(@PathVariable("uuid") UUID uuid){
+        return new ResponseEntity<GenericProductDto>(
+                productService.deleteProduct(uuid),
                 HttpStatus.OK
         );
     }

@@ -18,6 +18,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @SpringBootApplication
@@ -30,7 +31,7 @@ public class ProductserviceApplication {// implements CommandLineRunner {
 //    private final ProductRepository productRepository;
 //    private final CategoryRepository categoryRepository;
 //    private final PriceRepository priceRepository;
-
+//
 //    public ProductserviceApplication(@Qualifier("jt_mr") MentorRepository mentorRepository,
 //                                     @Qualifier("jt_ur") UserRepository userRepository,
 //                                     ProductRepository productRepository,
@@ -47,6 +48,7 @@ public class ProductserviceApplication {// implements CommandLineRunner {
         SpringApplication.run(ProductserviceApplication.class, args);
     }
 
+//    @Transactional()
 //    @Override
 //    public void run(String... args) throws Exception {
 ////        Mentor mentor = new Mentor();
@@ -104,5 +106,14 @@ public class ProductserviceApplication {// implements CommandLineRunner {
 //
 //        List<Product> products1 = productRepository.findAllByTitle("iPhone 15 Pro");
 //
+//        System.out.println("Fetching category b8f1f459-f9e9-4d3d-b115-f1f5267bd54f");
+//        Thread.sleep(1000);
+//        Category category1 = categoryRepository.findById(UUID.fromString("b8f1f459-f9e9-4d3d-b115-f1f5267bd54f")).get();
+////        Category category1 = category1Optional.get();
+//
+//        System.out.println("Fetching products for category");
+//        Thread.sleep(1000);
+//        List<Product> products11 = category1.getProducts();
 //    }
+
 }

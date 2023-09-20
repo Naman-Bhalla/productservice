@@ -1,5 +1,6 @@
 package dev.naman.productservice.models;
 
+import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,8 +10,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product extends BaseModel {
+
     private String title;
+
     private String description;
+
     private String image;
     //            P : C
     // => L to R: 1 : 1

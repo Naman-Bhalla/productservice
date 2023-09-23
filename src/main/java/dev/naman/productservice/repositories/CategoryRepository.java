@@ -10,10 +10,10 @@ import java.util.UUID;
 
 @Lazy
 public interface CategoryRepository
-extends JpaRepository<Category, UUID> {
+extends JpaRepository<Category, Long> {
 
-    Optional<Category> findById(UUID uuid);
+  //  Optional<Category> findById(UUID uuid);
 
-    @Override
-    List<Category> findAllById(Iterable<UUID> uuids);
+   // @Override
+  //  List<Category> findAllById(Iterable<Long> uuids);
 }

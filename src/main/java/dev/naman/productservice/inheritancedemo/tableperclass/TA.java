@@ -1,13 +1,10 @@
-package dev.naman.productservice.inheritancedemo.tableperclass;
+package dev.daliya.productService.inheritancedemo.tableperclass;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@Entity(name = "tpc_ta")
+@Data
+@Entity(name = "TPC_TA")
 public class TA extends User {
     private double averageRating;
 }

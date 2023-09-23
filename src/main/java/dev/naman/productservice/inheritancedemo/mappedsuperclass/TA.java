@@ -1,12 +1,10 @@
-package dev.naman.productservice.inheritancedemo.mappedsuperclass;
+package dev.daliya.productService.inheritancedemo.mappedsuperclass;
 
 import jakarta.persistence.Entity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@Entity(name = "ms_ta")
+@Data
+@Entity(name = "MS_TA")
 public class TA extends User {
     private double averageRating;
 }

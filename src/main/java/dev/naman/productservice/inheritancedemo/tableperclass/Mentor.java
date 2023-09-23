@@ -1,13 +1,10 @@
-package dev.naman.productservice.inheritancedemo.tableperclass;
+package dev.daliya.productService.inheritancedemo.tableperclass;
 
-import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@Entity(name = "tpc_mentor")
+@Data
+@Entity(name = "TPC_Mentor")
 public class Mentor extends User {
-    private double averageRating;
+    private double averageMentorRating;
 }

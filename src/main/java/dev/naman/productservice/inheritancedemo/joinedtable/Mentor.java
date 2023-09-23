@@ -1,14 +1,10 @@
-package dev.naman.productservice.inheritancedemo.joinedtable;
+package dev.daliya.productService.inheritancedemo.joinedtable;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.PrimaryKeyJoinColumn;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@Entity(name = "jt_mentor")
-@PrimaryKeyJoinColumn(name = "user_id")
+@Data
+@Entity(name = "JT_Mentor")
 public class Mentor extends User {
-    private double averageRating;
+    private double averageMentorRating;
 }

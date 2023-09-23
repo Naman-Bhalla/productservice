@@ -3,10 +3,8 @@ package dev.daliya.productService.inheritancedemo.joinedtable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository("jt_ur")
-public interface UserRepository extends JpaRepository<User, Long> {
-
+@Repository("jt_ta")
+public interface TARepository extends JpaRepository<TA, Long> {
     @Override
-    <S extends User> S save(S entity);
-
+    <S extends TA> S save(S entity);
 }

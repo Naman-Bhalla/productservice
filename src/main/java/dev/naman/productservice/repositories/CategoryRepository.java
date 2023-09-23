@@ -1,19 +1,15 @@
-package dev.naman.productservice.repositories;
+package dev.daliya.productService.repositories;
 
-import dev.naman.productservice.models.Category;
-import org.springframework.context.annotation.Lazy;
+import dev.daliya.productService.models.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-@Lazy
-public interface CategoryRepository
-extends JpaRepository<Category, UUID> {
-
-    Optional<Category> findById(UUID uuid);
+@Repository
+public interface CategoryRepository extends JpaRepository<Category, UUID> {
 
     @Override
-    List<Category> findAllById(Iterable<UUID> uuids);
+    Optional<Category> findById(UUID uuid);
 }

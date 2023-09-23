@@ -1,16 +1,15 @@
-package dev.naman.productservice.inheritancedemo.joinedtable;
+package dev.daliya.productService.inheritancedemo.joinedtable;
 
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
-@Entity(name = "jt_user")
+@Entity(name = "JT_User")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

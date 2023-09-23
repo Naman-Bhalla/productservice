@@ -1,36 +1,25 @@
-package dev.naman.productservice.models;
+package dev.daliya.productService.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToMany;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter
-@Setter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class Category extends BaseModel {
-    @Column
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    @Fetch(FetchMode.SELECT)
-    private List<Product> products = new ArrayList<>();
+    private String description;
 
-    // this is the same relation being mapped by category attribute in the other (Product) class
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "category")
+    @Fetch(org.hibernate.annotations.FetchMode.SUBSELECT)
+    private List<Product> products;
 }
-// class Group {
-//   m:m
-//   List<User> members;
-//   m:m
-//   List<User> admins;
-//
-//   1----> 1
-//   m<---- 1
-//   m   :  1
-//   User creator;
-// }

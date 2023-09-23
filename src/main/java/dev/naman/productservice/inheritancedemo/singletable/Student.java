@@ -1,14 +1,12 @@
-package dev.naman.productservice.inheritancedemo.singletable;
+package dev.daliya.productService.inheritancedemo.singletable;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
-@Getter
-@Setter
-@Entity(name = "st_student")
-@DiscriminatorValue(value = "1")
+@Data
+@Entity(name = "ST_Student")
+@DiscriminatorValue(value = "2")
 public class Student extends User {
     private double psp;
     private double attendance;

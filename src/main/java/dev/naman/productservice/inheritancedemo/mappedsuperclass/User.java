@@ -1,9 +1,6 @@
-package dev.naman.productservice.inheritancedemo.mappedsuperclass;
+package dev.daliya.productService.inheritancedemo.mappedsuperclass;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +8,7 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

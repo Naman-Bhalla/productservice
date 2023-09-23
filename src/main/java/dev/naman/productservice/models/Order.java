@@ -1,21 +1,22 @@
-package dev.naman.productservice.models;
+package dev.daliya.productService.models;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity(name = "orders")
-@Getter
-@Setter
-public class Order extends BaseModel {
+public class Order extends BaseModel{
 
-    @ManyToMany()
-    @JoinTable(
-            name = "product_orders",
-            joinColumns = @JoinColumn(name = "order_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
-    private List<Product> product;
+    @ManyToMany
+   @JoinTable(name = "product_order", joinColumns = @JoinColumn(name = "order_id"), inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> products;
 }

@@ -1,4 +1,4 @@
-package dev.naman.productservice.dtos;
+package dev.daliya.productService.dtos;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,11 +7,11 @@ import org.springframework.http.HttpStatus;
 @Getter
 @Setter
 public class ExceptionDto {
-    private HttpStatus errorCode;
+    private HttpStatus httpStatus;
     private String message;
 
     public ExceptionDto(HttpStatus status, String message) {
-        this.errorCode = status;
+        this.httpStatus = status;
         this.message = message;
     }
 }

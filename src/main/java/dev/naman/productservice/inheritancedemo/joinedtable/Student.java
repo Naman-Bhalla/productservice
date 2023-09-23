@@ -1,10 +1,14 @@
-package dev.daliya.productService.inheritancedemo.joinedtable;
+package dev.naman.productservice.inheritancedemo.joinedtable;
 
 import jakarta.persistence.Entity;
-import lombok.Data;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Entity(name = "JT_Student")
+@Getter
+@Setter
+@Entity(name = "jt_student")
+@PrimaryKeyJoinColumn(name = "user_id")
 public class Student extends User {
     private double psp;
     private double attendance;

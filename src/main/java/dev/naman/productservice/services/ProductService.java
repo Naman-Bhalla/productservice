@@ -1,21 +1,17 @@
-package dev.daliya.productService.services;
+package dev.naman.productservice.services;
 
-import dev.daliya.productService.dtos.GenericProductDto;
-import dev.daliya.productService.exeptions.NotFoundException;
+import dev.naman.productservice.dtos.GenericProductDto;
+import dev.naman.productservice.exceptions.NotFoundException;
 
 import java.util.List;
-import java.util.UUID;
-
 
 public interface ProductService {
 
-    GenericProductDto getProductById(UUID id) throws NotFoundException;
-
     GenericProductDto createProduct(GenericProductDto product);
+
+    GenericProductDto getProductById(Long id) throws NotFoundException;
 
     List<GenericProductDto> getAllProducts();
 
-    GenericProductDto deleteProductById(UUID id) throws NotFoundException;
-
-    GenericProductDto updateProductById(GenericProductDto product, UUID id) throws NotFoundException;
+   GenericProductDto deleteProduct(Long id);
 }

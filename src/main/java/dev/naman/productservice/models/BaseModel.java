@@ -1,21 +1,16 @@
-package dev.daliya.productService.models;
+package dev.naman.productservice.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
-import lombok.Data;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.id.factory.spi.GenerationTypeStrategy;
 
 import java.util.UUID;
 
-@Data
 @MappedSuperclass
 public class BaseModel {
-
     @Id
-    @GeneratedValue(generator = "UUIdGenerator")
-    @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
+    @GeneratedValue(generator = "naman")
+    @GenericGenerator(name = "naman", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "binary(16)", nullable = false, updatable = false)
-    private UUID id;
+    private UUID uuid;
 }

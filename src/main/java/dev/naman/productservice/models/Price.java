@@ -1,16 +1,17 @@
-package dev.daliya.productService.models;
+package dev.naman.productservice.models;
 
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @Entity
-@NoArgsConstructor
+@Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Price extends BaseModel {
-
-    double price;
     String currency;
+    double price;
 }

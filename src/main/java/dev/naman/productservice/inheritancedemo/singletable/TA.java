@@ -1,12 +1,14 @@
-package dev.daliya.productService.inheritancedemo.singletable;
+package dev.naman.productservice.inheritancedemo.singletable;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Entity(name = "ST_TA")
-@DiscriminatorValue(value = "3")
+@Getter
+@Setter
+@Entity(name = "st_ta")
+@DiscriminatorValue(value = "2")
 public class TA extends User {
     private double averageRating;
 }

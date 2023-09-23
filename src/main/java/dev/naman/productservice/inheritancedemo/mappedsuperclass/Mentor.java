@@ -1,10 +1,12 @@
-package dev.daliya.productService.inheritancedemo.mappedsuperclass;
+package dev.naman.productservice.inheritancedemo.mappedsuperclass;
 
 import jakarta.persistence.Entity;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
-@Entity(name = "MS_Mentor")
+@Getter
+@Setter
+@Entity(name = "ms_mentor")
 public class Mentor extends User {
-    private double averageMentorRating;
+    private double averageRating;
 }

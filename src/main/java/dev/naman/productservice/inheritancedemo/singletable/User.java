@@ -1,4 +1,4 @@
-package dev.daliya.productService.inheritancedemo.singletable;
+package dev.naman.productservice.inheritancedemo.singletable;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -6,14 +6,16 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "ST_User")
+@Entity(name = "st_user")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.INTEGER)
+@DiscriminatorColumn(
+        name = "userType",
+        discriminatorType = DiscriminatorType.INTEGER
+)
 @DiscriminatorValue(value = "0")
 public class User {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String email;

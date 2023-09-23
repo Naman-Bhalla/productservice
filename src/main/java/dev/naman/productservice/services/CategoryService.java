@@ -1,13 +1,10 @@
-package dev.daliya.productService.services;
+package dev.naman.productservice.services;
 
-import dev.daliya.productService.dtos.CategoryDto;
+import dev.naman.productservice.models.Category;
 
 import java.util.List;
-import java.util.UUID;
 
 public interface CategoryService {
-
-  List<CategoryDto> getAllCategories();
-
-  CategoryDto getCategoryById(UUID id);
+    Category getCategory(String uuid);
+    List<String> getProductTitles(List<String> categoryUUIDs);
 }

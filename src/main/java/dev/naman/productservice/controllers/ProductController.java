@@ -38,6 +38,7 @@ public class ProductController {
     // GET /products {}
     @GetMapping
     public List<GenericProductDto> getAllProducts() {
+
         return productService.getAllProducts();
     }
 
@@ -62,8 +63,8 @@ public class ProductController {
         return productService.createProduct(product);
     }
 
-    @PutMapping("{id}")
-    public void updateProductById() {
-
+    @PutMapping("/update")
+    public GenericProductDto updateProductById(@RequestBody GenericProductDto genericProductDto) {
+return productService.updateProductById(genericProductDto);
     }
 }

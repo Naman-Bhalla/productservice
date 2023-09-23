@@ -1,5 +1,6 @@
 package dev.naman.productservice.controllers;
 
+import dev.naman.productservice.dtos.CategoryDto;
 import dev.naman.productservice.dtos.GetProductTitlesRequestDto;
 import dev.naman.productservice.dtos.ProductDto;
 import dev.naman.productservice.models.Category;
@@ -39,6 +40,12 @@ public class CategoryController {
         return productDtos;
     }
 
+    @GetMapping
+    List<String> getAllCategoty(){
+
+        return categoryService.getAllCategory();
+    }
+
     @GetMapping("/titles/")
     public List<String> getProductTitles(@RequestBody GetProductTitlesRequestDto requestDto) {
 
@@ -46,4 +53,11 @@ public class CategoryController {
 
         return categoryService.getProductTitles(uuids);
     }
+
+    @GetMapping("/path/{id}")
+        public CategoryDto getCategotyById(@PathVariable ("id") Long id){
+
+       return categoryService.findCategoryById(id);
+
+        }
 }

@@ -18,7 +18,7 @@ public class Category extends BaseModel {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    @Fetch(FetchMode.SELECT)
+    @Fetch(FetchMode.SUBSELECT)
     private List<Product> products = new ArrayList<>();
 
     // this is the same relation being mapped by category attribute in the other (Product) class

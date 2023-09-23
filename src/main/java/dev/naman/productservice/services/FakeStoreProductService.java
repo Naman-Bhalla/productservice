@@ -4,13 +4,11 @@ import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductDto;
 import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoryProductServiceClient;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 
 @Repository("fakeStoreProductService")
@@ -21,7 +19,7 @@ public class FakeStoreProductService implements ProductService {
     private GenericProductDto convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto) {
 
         GenericProductDto product = new GenericProductDto();
-        product.setId(fakeStoreProductDto.getId());
+        product.setId(fakeStoreProductDto.getId().toString());
         product.setImage(fakeStoreProductDto.getImage());
         product.setDescription(fakeStoreProductDto.getDescription());
         product.setTitle(fakeStoreProductDto.getTitle());
@@ -42,7 +40,7 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public GenericProductDto getProductById(Long id) throws NotFoundException {
+    public GenericProductDto getProductById(UUID id) throws NotFoundException {
         return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.getProductById(id));
     }
 
@@ -57,7 +55,22 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public GenericProductDto deleteProduct(Long id) {
+    public GenericProductDto deleteProduct(UUID id) {
         return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.deleteProduct(id));
+    }
+
+    @Override
+    public GenericProductDto updateProduct(UUID id, GenericProductDto product) throws NotFoundException {
+        return null;
+    }
+
+    @Override
+    public List<String> getProductCategories() {
+        return null;
+    }
+
+    @Override
+    public List<GenericProductDto> getProductInCategory(String categoryName) {
+        return null;
     }
 }

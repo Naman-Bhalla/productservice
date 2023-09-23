@@ -3,6 +3,7 @@ package dev.naman.productservice.models;
 import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.BatchSize;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
@@ -24,10 +25,11 @@ public class Product extends BaseModel {
     // => Ans:    m : 1
     @ManyToOne(cascade = {CascadeType.PERSIST})
     @JoinColumn(name = "category")
+
     private Category category;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
-//    @Fetch(FetchMode.JOIN)
+
     private Price price;
 //    private double price;
 }

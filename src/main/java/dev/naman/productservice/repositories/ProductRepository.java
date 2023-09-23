@@ -1,5 +1,6 @@
 package dev.naman.productservice.repositories;
 
+import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import org.springframework.data.domain.Example;
@@ -15,6 +16,18 @@ import java.util.function.Function;
 @Repository
 public interface ProductRepository
 extends JpaRepository<Product, UUID> {
+
+
+
+    @Query(value = CustomQueries.FIND_ALL_PRODUCT)
+    List<Product> findAllProducts();
+
+
+    @Query(nativeQuery = true, value = CustomQueries.GET_ALL_PRODUCT_CATEGORY)
+    List<String> getAllProductCategory();
+
+    @Query(nativeQuery = true, value = CustomQueries.GET_ALL_PRODUCT_BY_CATEGORY)
+    List<Product> getAllProductByCategory(String categoryName);
 
     Product findByTitleEquals(String title);
 

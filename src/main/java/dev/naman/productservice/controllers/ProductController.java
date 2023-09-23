@@ -7,16 +7,20 @@ import dev.naman.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
 //    @Autowired
     // field injection
+
     private ProductService productService;
+
     // ....;
     // ...;
 
@@ -44,12 +48,12 @@ public class ProductController {
     // localhost:8080/products/{id}
     // localhost:8080/products/123
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
+    public GenericProductDto getProductById(@PathVariable("id") UUID id) throws NotFoundException {
         return productService.getProductById(id);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
+    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") UUID id) throws NotFoundException {
         return new ResponseEntity<>(
                 productService.deleteProduct(id),
                 HttpStatus.OK
@@ -63,7 +67,15 @@ public class ProductController {
     }
 
     @PutMapping("{id}")
-    public void updateProductById() {
-
+    public GenericProductDto updateProductById(@PathVariable("id") UUID id, @RequestBody GenericProductDto product) throws NotFoundException {
+        return productService.updateProduct(id, product);
     }
+
+    @GetMapping("/categories")
+    public List<String> getProductCategories() {return productService.getProductCategories();}
+
+    @GetMapping("/category/{name}")
+    public List<GenericProductDto> getProductInCategory(@PathVariable("name") String categoryName) {
+        return productService.getProductInCategory(categoryName);
+    };
 }

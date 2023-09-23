@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -76,4 +77,11 @@ public class CategoryServiceImpl implements CategoryService {
 
         return titles;
     }
+
+    @Override
+    public List<String> getAllCategories() {
+       return categoryRepository.listCategoryByName();
+    }
+
+
 }

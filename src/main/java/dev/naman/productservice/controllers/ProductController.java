@@ -56,12 +56,9 @@ public class ProductController {
         return productService.getProductsCategories(category);
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(
-                productService.deleteProduct(id),
-                HttpStatus.OK
-        );
+    @DeleteMapping("/deleteProduct/{id}")
+    public void deleteProductById(@PathVariable("id") String id) {
+        productService.deleteProduct(UUID.fromString(id));
     }
 
     @PostMapping("/createProduct")
@@ -74,4 +71,5 @@ public class ProductController {
     public GenericProductDto updateProductById(@RequestBody GenericProductDto product) {
         return productService.createProduct(product);
     }
+
 }

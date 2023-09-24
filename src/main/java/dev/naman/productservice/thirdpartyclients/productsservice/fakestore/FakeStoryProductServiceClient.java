@@ -80,16 +80,17 @@ public class FakeStoryProductServiceClient {
         return Arrays.stream(response.getBody()).toList();
     }
 
-    public FakeStoreProductDto deleteProduct(Long id) {
-        RestTemplate restTemplate = restTemplateBuilder.build();
-
-
-        RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(FakeStoreProductDto.class);
-        ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor =
-                restTemplate.responseEntityExtractor(FakeStoreProductDto.class);
-        ResponseEntity<FakeStoreProductDto> response = restTemplate.execute(specificProductRequestUrl, HttpMethod.DELETE,
-                requestCallback, responseExtractor, id);
-
-        return response.getBody();
+    public FakeStoreProductDto deleteProduct(UUID id) {
+//        RestTemplate restTemplate = restTemplateBuilder.build();
+//
+//
+//        RequestCallback requestCallback = restTemplate.acceptHeaderRequestCallback(FakeStoreProductDto.class);
+//        ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor =
+//                restTemplate.responseEntityExtractor(FakeStoreProductDto.class);
+//        ResponseEntity<FakeStoreProductDto> response = restTemplate.execute(specificProductRequestUrl, HttpMethod.DELETE,
+//                requestCallback, responseExtractor, id);
+//
+//        return response.getBody();
+        return  null;
     }
 }

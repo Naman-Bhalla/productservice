@@ -55,8 +55,8 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public GenericProductDto deleteProduct(Long id) {
-        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.deleteProduct(id));
+    public void deleteProduct(UUID id) {
+        convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.deleteProduct(id));
     }
 
     @Override

@@ -50,7 +50,7 @@ public class FakeStoryProductServiceClient {
         return response.getBody();
     }
 
-    public FakeStoreProductDto getProductById(Long id) throws NotFoundException {
+    public FakeStoreProductDto getProductById(String id) throws NotFoundException {
 //        FakeStoreProductService fakeStoreProductService = new FakeStoreProductService();
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response =
@@ -79,7 +79,7 @@ public class FakeStoryProductServiceClient {
         return Arrays.stream(response.getBody()).toList();
     }
 
-    public FakeStoreProductDto deleteProduct(Long id) {
+    public FakeStoreProductDto deleteProduct(String id) {
         RestTemplate restTemplate = restTemplateBuilder.build();
 
 

@@ -44,12 +44,12 @@ public class ProductController {
     // localhost:8080/products/{id}
     // localhost:8080/products/123
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
+    public GenericProductDto getProductById(@PathVariable("id") String id) throws NotFoundException {
         return productService.getProductById(id);
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
+    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") String id) {
         return new ResponseEntity<>(
                 productService.deleteProduct(id),
                 HttpStatus.OK

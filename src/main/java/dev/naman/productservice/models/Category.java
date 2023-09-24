@@ -7,6 +7,7 @@ import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Getter
@@ -20,6 +21,7 @@ public class Category extends BaseModel {
     @OneToMany(mappedBy = "category")
     @Fetch(FetchMode.SELECT)
     private List<Product> products = new ArrayList<>();
+
 
     // this is the same relation being mapped by category attribute in the other (Product) class
 }

@@ -39,11 +39,17 @@ public class CategoryController {
         return productDtos;
     }
 
-    @GetMapping("/titles/")
+    @GetMapping("/categoryTitle")
+    public List<String> getCategoryTitle() {
+        return categoryService.findAllCategories();
+    }
+
+    @GetMapping("/category/")
     public List<String> getProductTitles(@RequestBody GetProductTitlesRequestDto requestDto) {
 
         List<String> uuids = requestDto.getUuids();
 
         return categoryService.getProductTitles(uuids);
     }
+
 }

@@ -5,14 +5,16 @@ import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.actuate.web.exchanges.HttpExchange;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.OutputKeys;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
-@RequestMapping("/products")
 public class ProductController {
 //    @Autowired
     // field injection
@@ -36,34 +38,38 @@ public class ProductController {
 //    }
 
     // GET /products {}
-    @GetMapping
-    public List<GenericProductDto> getAllProducts() {
-        return productService.getAllProducts();
+    @GetMapping("/allProducts")
+    public ResponseEntity<List<GenericProductDto>> getAllProducts() {
+
+        return new ResponseEntity<>(productService.getAllProducts(),HttpStatus.OK);
     }
 
     // localhost:8080/products/{id}
     // localhost:8080/products/123
-    @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
-        return productService.getProductById(id);
+    @GetMapping("getProduct/{uuid}")
+    public GenericProductDto getProductById(@PathVariable("uuid") String uuid) throws NotFoundException {
+        return productService.getProductById(UUID.fromString(uuid));
     }
 
-    @DeleteMapping("{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
-        return new ResponseEntity<>(
-                productService.deleteProduct(id),
-                HttpStatus.OK
-        );
+    @GetMapping("getProductByCategory")
+    public List<GenericProductDto> getProductByCategory(@RequestParam("category") String category) throws NotFoundException {
+        return productService.getProductsCategories(category);
     }
 
-    @PostMapping
+    @DeleteMapping("/deleteProduct/{id}")
+    public void deleteProductById(@PathVariable("id") String id) {
+        productService.deleteProduct(UUID.fromString(id));
+    }
+
+    @PostMapping("/createProduct")
     public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
 //        System.out.println(product.name);
         return productService.createProduct(product);
     }
 
-    @PutMapping("{id}")
-    public void updateProductById() {
-
+    @PostMapping("/updateProduct")
+    public GenericProductDto updateProductById(@RequestBody GenericProductDto product) {
+        return productService.createProduct(product);
     }
+
 }

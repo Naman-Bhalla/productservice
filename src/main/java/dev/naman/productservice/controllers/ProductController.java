@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/products")
@@ -63,7 +64,7 @@ public class ProductController {
     }
 
     @PutMapping("{id}")
-    public void updateProductById() {
-
+    public GenericProductDto updateProductById(@RequestBody GenericProductDto product, @PathVariable("id") Long id) {
+        return  productService.updateProductById(product, id);
     }
 }

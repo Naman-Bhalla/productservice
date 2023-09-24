@@ -4,8 +4,6 @@ import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductDto;
 import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoryProductServiceClient;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Repository("fakeStoreProductService")
+@Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
 
     private FakeStoryProductServiceClient fakeStoryProductServiceClient;
@@ -59,5 +57,9 @@ public class FakeStoreProductService implements ProductService {
     @Override
     public GenericProductDto deleteProduct(Long id) {
         return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.deleteProduct(id));
+    }
+    @Override
+    public GenericProductDto updateProductById(GenericProductDto product, Long id) {
+        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.updateProductById(product,id));
     }
 }

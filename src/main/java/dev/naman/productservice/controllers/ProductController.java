@@ -5,14 +5,15 @@ import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.actuate.web.exchanges.HttpExchange;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.transform.OutputKeys;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
 public class ProductController {
 //    @Autowired
     // field injection
@@ -36,9 +37,10 @@ public class ProductController {
 //    }
 
     // GET /products {}
-    @GetMapping
-    public List<GenericProductDto> getAllProducts() {
-        return productService.getAllProducts();
+    @GetMapping("/allProducts")
+    public ResponseEntity<List<GenericProductDto>> getAllProducts() {
+
+        return new ResponseEntity<>(productService.getAllProducts(),HttpStatus.OK);
     }
 
     // localhost:8080/products/{id}

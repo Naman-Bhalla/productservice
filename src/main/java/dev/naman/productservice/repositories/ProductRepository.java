@@ -42,6 +42,6 @@ extends JpaRepository<Product, UUID> {
     @Query(value = CustomQueries.FIND_ALL_BY_TITLE, nativeQuery = true)
     List<Product> findAllByTitle(String naman);
 
-//    @Query("select Product from Product where Product.price.currency = :currency and Product.title = :naman")
+//    @Query("")
 //    List<Product> doSomething(String naman, String currency);
 }

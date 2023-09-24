@@ -2,6 +2,7 @@ package dev.naman.productservice.services;
 
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.models.Product;
+import dev.naman.productservice.repositories.CustomQueriesImpl;
 import dev.naman.productservice.repositories.ProductRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -13,8 +14,12 @@ import java.util.List;
 public class SelfProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
 
-    public SelfProductServiceImpl(ProductRepository productRepository) {
+    private CustomQueriesImpl customQueriesImpl;
+
+    public SelfProductServiceImpl(ProductRepository productRepository, CustomQueriesImpl customQueriesImpl) {
+
         this.productRepository = productRepository;
+        this.customQueriesImpl = customQueriesImpl;
     }
 
     @Override
@@ -29,7 +34,7 @@ public class SelfProductServiceImpl implements ProductService {
 
     @Override
     public List<GenericProductDto> getAllProducts() {
-        return null;
+        return customQueriesImpl.findAllProducts();
     }
 
     @Override

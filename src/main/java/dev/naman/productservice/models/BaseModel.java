@@ -1,6 +1,8 @@
 package dev.naman.productservice.models;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.id.factory.spi.GenerationTypeStrategy;
 

@@ -2,6 +2,7 @@ package dev.naman.productservice.thirdpartyclients.productsservice.fakestore;
 
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
+import dev.naman.productservice.models.Product;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
@@ -41,7 +42,7 @@ public class FakeStoryProductServiceClient {
     }
 
 
-    public FakeStoreProductDto createProduct(GenericProductDto product) {
+    public FakeStoreProductDto createProduct(Product product) {
         RestTemplate restTemplate = restTemplateBuilder.build();
         ResponseEntity<FakeStoreProductDto> response = restTemplate.postForEntity(
                 productRequestsBaseUrl, product, FakeStoreProductDto.class

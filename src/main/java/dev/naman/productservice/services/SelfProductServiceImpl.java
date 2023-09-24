@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Primary
 @Service("selfProductServiceImpl")
@@ -23,8 +24,8 @@ public class SelfProductServiceImpl implements ProductService {
     }
 
     @Override
-    public GenericProductDto getProductById(Long id) {
-        return null;
+    public GenericProductDto getProductById(UUID id) {
+        return customQueriesImpl.findProduct(id);
     }
 
     @Override

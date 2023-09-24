@@ -14,6 +14,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 /***
  * Wrapper over FakeStore API
@@ -50,22 +51,22 @@ public class FakeStoryProductServiceClient {
         return response.getBody();
     }
 
-    public FakeStoreProductDto getProductById(Long id) throws NotFoundException {
+    public FakeStoreProductDto getProductById(UUID id) throws NotFoundException {
 //        FakeStoreProductService fakeStoreProductService = new FakeStoreProductService();
-        RestTemplate restTemplate = restTemplateBuilder.build();
-        ResponseEntity<FakeStoreProductDto> response =
-                restTemplate.getForEntity(specificProductRequestUrl, FakeStoreProductDto.class, id);
-
-        FakeStoreProductDto fakeStoreProductDto = response.getBody();
-
-        if (fakeStoreProductDto == null) {
-            throw new NotFoundException("Product with id: " + id + " doesn't exist.");
-        }
+//        RestTemplate restTemplate = restTemplateBuilder.build();
+//        ResponseEntity<FakeStoreProductDto> response =
+//                restTemplate.getForEntity(specificProductRequestUrl, FakeStoreProductDto.class, id);
+//
+//        FakeStoreProductDto fakeStoreProductDto = response.getBody();
+//
+//        if (fakeStoreProductDto == null) {
+//            throw new NotFoundException("Product with id: " + id + " doesn't exist.");
+//        }
 
 //        response.getStatusCode()
 
-        return fakeStoreProductDto;
-//        return null;
+//        return fakeStoreProductDto;
+        return null;
     }
 
     public List<FakeStoreProductDto> getAllProducts() {

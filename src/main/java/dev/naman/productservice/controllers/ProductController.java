@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.xml.transform.OutputKeys;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 public class ProductController {
@@ -45,9 +46,9 @@ public class ProductController {
 
     // localhost:8080/products/{id}
     // localhost:8080/products/123
-    @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
-        return productService.getProductById(id);
+    @GetMapping("getProduct/{uuid}")
+    public GenericProductDto getProductById(@PathVariable("uuid") String uuid) throws NotFoundException {
+        return productService.getProductById(UUID.fromString(uuid));
     }
 
     @DeleteMapping("{id}")

@@ -1,18 +1,17 @@
-package dev.naman.productservice.thirdpartyclients.productsservice.fakestore;
+package dev.naman.productService.thirdPartyClients.productService.fakeStore;
 
-import dev.naman.productservice.models.Category;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.UUID;
 
 @Setter
 @Getter
 public class FakeStoreProductDto {
-    private Long id;
+    private UUID id;
     private String title;
     private double price;
     private String category;
     private String description;
     private String image;
 }
-
-// Break till 10:35

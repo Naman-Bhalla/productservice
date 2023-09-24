@@ -63,4 +63,9 @@ public class FakeStoreProductService implements ProductService {
     public List<GenericProductDto> getProductsCategories(String name) {
         return null;
     }
+
+    @Override
+    public GenericProductDto updateProduct(GenericProductDto product) {
+        return null;
+    }
 }

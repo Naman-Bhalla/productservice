@@ -82,4 +82,36 @@ public class SelfProductServiceImpl implements ProductService {
     public List<GenericProductDto> getProductsCategories(String name) {
         return customQueriesImpl.findProductsByCategory(name);
     }
+
+    @Override
+    public GenericProductDto updateProduct(GenericProductDto dto) {
+
+        Optional<Product> product = productRepository.findById(UUID.fromString(dto.getId()));
+        if(product.isPresent()){
+
+            Category category = null;
+            Optional<Category> categoryOptional = categoryRepository.findByName(dto.getCategory());
+            if(categoryOptional.isEmpty()){
+                category = new Category();
+                category.setName(dto.getCategory());
+                categoryRepository.save(category);
+            }else{
+                category = categoryOptional.get();
+            }
+
+            Price price = new Price();
+            price.setPrice(dto.getPrice());
+            price.setCurrency("Dollar");
+            priceRepository.save(price);
+
+            product.get().setCategory(category);
+            product.get().setPrice(price);
+            product.get().setDescription(dto.getDescription());
+            product.get().setTitle(dto.getTitle());
+            product.get().setImage(dto.getImage());
+            productRepository.save(product.get());
+        }
+
+        return dto;
+    }
 }

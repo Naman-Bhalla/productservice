@@ -70,8 +70,8 @@ public class ProductController {
         return productService.createProduct(product);
     }
 
-    @PutMapping("{id}")
-    public void updateProductById() {
-
+    @PostMapping("/updateProduct")
+    public GenericProductDto updateProductById(@RequestBody GenericProductDto product) {
+        return productService.createProduct(product);
     }
 }

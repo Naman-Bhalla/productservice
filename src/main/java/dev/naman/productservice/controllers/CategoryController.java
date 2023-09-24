@@ -1,13 +1,13 @@
 package dev.naman.productservice.controllers;
 
-import dev.naman.productservice.dtos.GetProductTitlesRequestDto;
-import dev.naman.productservice.dtos.ProductDto;
-import dev.naman.productservice.models.Category;
-import dev.naman.productservice.models.Product;
+import dev.naman.productservice.dtos.GenericProductDto;
+import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.services.CategoryService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -20,30 +20,15 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/{uuid}")
-    public List<ProductDto> getCategory(@PathVariable("uuid") String uuid) {
-        List<Product> products = categoryService.getCategory(uuid).getProducts();
-
-        List<ProductDto> productDtos = new ArrayList<>();
-
-        for (Product product: products) {
-            ProductDto productDto = new ProductDto();
-            productDto.setDescription(product.getDescription());
-            productDto.setTitle(product.getTitle());
-            productDto.setImage(product.getImage());
-            productDto.setPrice(product.getPrice());
-            productDtos.add(productDto);
-//            productDto.se
-        }
-
-        return productDtos;
+    @GetMapping
+    public List<String> getAllCategory(){
+        return categoryService.getAllCategory();
     }
 
-    @GetMapping("/titles/")
-    public List<String> getProductTitles(@RequestBody GetProductTitlesRequestDto requestDto) {
-
-        List<String> uuids = requestDto.getUuids();
-
-        return categoryService.getProductTitles(uuids);
+    @GetMapping("/{category}")
+    public List<GenericProductDto> getProductsInCategory(@PathVariable("category") String categoryName) throws NotFoundException {
+        return categoryService.getProductsInCategory(categoryName);
     }
+
+
 }

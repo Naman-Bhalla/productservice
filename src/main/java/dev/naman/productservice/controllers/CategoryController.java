@@ -1,15 +1,20 @@
 package dev.naman.productservice.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import dev.naman.productservice.dtos.GetProductTitlesRequestDto;
 import dev.naman.productservice.dtos.ProductDto;
 import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.services.CategoryService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/categories")
@@ -26,14 +31,14 @@ public class CategoryController {
 
         List<ProductDto> productDtos = new ArrayList<>();
 
-        for (Product product: products) {
+        for (Product product : products) {
             ProductDto productDto = new ProductDto();
             productDto.setDescription(product.getDescription());
             productDto.setTitle(product.getTitle());
             productDto.setImage(product.getImage());
             productDto.setPrice(product.getPrice());
             productDtos.add(productDto);
-//            productDto.se
+            // productDto.se
         }
 
         return productDtos;
@@ -46,4 +51,20 @@ public class CategoryController {
 
         return categoryService.getProductTitles(uuids);
     }
+
+    @PostMapping()
+    public Category createCategory(@RequestBody String category) {
+        return categoryService.createCategory(category);
+    }
+
+    @GetMapping("/all")
+    public List<Category> getAllCategories() {
+        return categoryService.getAllCategories();
+    }
+
+    @GetMapping("/allCategoryNames")
+    public List<String> getAllCategoryNames() {
+        return categoryService.getAllCategoryNames();
+    }
+
 }

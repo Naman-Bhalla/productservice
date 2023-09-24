@@ -76,4 +76,9 @@ public class CategoryServiceImpl implements CategoryService {
 
         return titles;
     }
+
+    @Override
+    public List<String> findAllCategories() {
+        return categoryRepository.findAllCategoriesName();
+    }
 }

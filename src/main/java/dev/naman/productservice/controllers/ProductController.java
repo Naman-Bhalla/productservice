@@ -51,6 +51,11 @@ public class ProductController {
         return productService.getProductById(UUID.fromString(uuid));
     }
 
+    @GetMapping("getProductByCategory")
+    public List<GenericProductDto> getProductByCategory(@RequestParam("category") String category) throws NotFoundException {
+        return productService.getProductsCategories(category);
+    }
+
     @DeleteMapping("{id}")
     public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(
@@ -59,7 +64,7 @@ public class ProductController {
         );
     }
 
-    @PostMapping
+    @PostMapping("/createProduct")
     public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
 //        System.out.println(product.name);
         return productService.createProduct(product);

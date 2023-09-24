@@ -20,6 +20,9 @@ public class CustomQueriesImpl implements CustomQueries{
             "left join price pri on pri.id = p.price_id ";
 
     private String whereId = "where p.id = :id ";
+
+    private String whereCategory = "where c.name = :category ";
+
     @Override
     public List<GenericProductDto> findAllProducts() {
         String sql = getAllProducts;
@@ -39,5 +42,16 @@ public class CustomQueriesImpl implements CustomQueries{
         query.setResultTransformer(new AliasToBeanResultTransformer(GenericProductDto.class));
         GenericProductDto dto = (GenericProductDto) query.uniqueResult();
         return dto;
+    }
+
+    @Override
+    public List<GenericProductDto> findProductsByCategory(String category) {
+        String sql = getAllProducts + whereCategory;
+        Query query = em.createNativeQuery(sql)
+                .unwrap(org.hibernate.query.Query.class);
+        query.setParameter("category", category);
+        query.setResultTransformer(new AliasToBeanResultTransformer(GenericProductDto.class));
+        List<GenericProductDto> list = query.list();
+        return list;
     }
 }

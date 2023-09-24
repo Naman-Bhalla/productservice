@@ -15,4 +15,6 @@ public interface ProductService {
     List<GenericProductDto> getAllProducts();
 
    GenericProductDto deleteProduct(Long id);
+
+    List<GenericProductDto> getProductsCategories(String name);
 }

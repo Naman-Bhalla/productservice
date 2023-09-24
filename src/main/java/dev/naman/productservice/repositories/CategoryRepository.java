@@ -24,4 +24,6 @@ extends JpaRepository<Category, UUID> {
     @Query(value = "select name  from category", nativeQuery = true)
      List<String> findAllCategoriesName();
 
+    Optional<Category> findByName(String name);
+
 }

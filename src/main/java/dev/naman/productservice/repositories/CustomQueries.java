@@ -11,4 +11,6 @@ public interface CustomQueries {
     List<GenericProductDto> findAllProducts();
 
     GenericProductDto findProduct(UUID id);
+
+    List<GenericProductDto> findProductsByCategory(String category);
 }

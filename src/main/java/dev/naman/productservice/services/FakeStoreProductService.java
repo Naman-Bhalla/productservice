@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Repository("fakeStoreProductService")
-public class FakeStoreProductService implements ProductService {
+public class FakeStoreProductService implements FakeProductService {
 
     private FakeStoryProductServiceClient fakeStoryProductServiceClient;
 

@@ -58,6 +58,13 @@
         <artifactId>mysql-connector-j</artifactId>
         <scope>runtime</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.flywaydb/flyway-mysql -->
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-mysql</artifactId>
+            <version>9.22.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -1,5 +1,7 @@
 package dev.naman.productservice.services;
 
+import dev.naman.productservice.dtos.CategoryDto;
+import dev.naman.productservice.dtos.ProductDto;
 import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
@@ -75,5 +77,34 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         return titles;
+    }
+
+    @Override
+    public List<CategoryDto> getAllCategories(List<String> categoryUUIds) {
+        List<UUID> uuids = new ArrayList<>();
+        for(String categoryId: categoryUUIds){
+            uuids.add(UUID.fromString(categoryId));
+        }
+        List<Category> categories = categoryRepository.findAllById(uuids);
+        List<CategoryDto> categoryDtos = new ArrayList<>();
+        for(Category category:categories){
+            CategoryDto categoryDto = new CategoryDto();
+            categoryDto.setName(category.getName());
+            List<Product> products = category.getProducts();
+            List<ProductDto> productDtos = new ArrayList<>();
+            products.forEach(
+                    product -> {
+                        ProductDto productDto = new ProductDto();
+                        productDto.setTitle(product.getTitle());
+                        productDto.setDescription(product.getDescription());
+                        productDto.setImage(product.getImage());
+                        productDto.setPrice(product.getPrice());
+                        productDtos.add(productDto);
+                    }
+            );
+            categoryDto.setProducts(productDtos);
+            categoryDtos.add(categoryDto);
+        }
+        return categoryDtos;
     }
 }

@@ -9,6 +9,5 @@ import java.util.List;
 @Setter
 public class CategoryDto {
     private String name;
-
     private List<ProductDto> products;
 }

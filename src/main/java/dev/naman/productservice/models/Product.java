@@ -29,5 +29,6 @@ public class Product extends BaseModel {
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
 //    @Fetch(FetchMode.JOIN)
     private Price price;
+    private int inventoryCount;
 //    private double price;
 }

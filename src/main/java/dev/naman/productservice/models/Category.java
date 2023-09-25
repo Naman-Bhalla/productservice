@@ -19,7 +19,7 @@ public class Category extends BaseModel {
 
     @OneToMany(mappedBy = "category")
     @Fetch(FetchMode.SELECT)
-    private List<Product> products = new ArrayList<>();
+    private List<Product> products;
 
     // this is the same relation being mapped by category attribute in the other (Product) class
 }

@@ -34,7 +34,6 @@ public class CategoryController {
             productDto.setImage(product.getImage());
             productDto.setPrice(product.getPrice());
             productDtos.add(productDto);
-//            productDto.se
         }
 
         return productDtos;

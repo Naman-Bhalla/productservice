@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.CancellationException;
 
 @Primary
 @Service("selfProductServiceImpl")
@@ -22,8 +21,9 @@ public class SelfProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
 
-    public SelfProductServiceImpl(ProductRepository productRepository) {
+    public SelfProductServiceImpl(ProductRepository productRepository,CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
@@ -32,6 +32,7 @@ public class SelfProductServiceImpl implements ProductService {
         if(product.isEmpty())
             throw new RuntimeException();
         Product prod = product.get();
+        prod.getPrice();//Needed coz of lazy loading
         ProductDto productDto = new ProductDto();
         productDto.setTitle(prod.getTitle());
         productDto.setDescription(prod.getDescription());

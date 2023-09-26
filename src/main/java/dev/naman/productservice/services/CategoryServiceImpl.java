@@ -6,6 +6,7 @@ import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
 import dev.naman.productservice.repositories.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -18,7 +19,6 @@ import java.util.UUID;
 public class CategoryServiceImpl implements CategoryService {
     private CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
-
     public CategoryServiceImpl(CategoryRepository categoryRepository,
                                ProductRepository productRepository) {
         this.categoryRepository = categoryRepository;

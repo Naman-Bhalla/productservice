@@ -14,4 +14,4 @@ public class RandomTest {
 //
 //        assert(number < 10000000);
 //    }
-//}
+}

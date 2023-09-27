@@ -60,7 +60,10 @@ public class FakeStoryProductServiceClient {
 
         if (fakeStoreProductDto == null) {
             throw new NotFoundException("Product with id: " + id + " doesn't exist.");
+//            return null;
         }
+
+//        null == null
 
 //        response.getStatusCode()
 

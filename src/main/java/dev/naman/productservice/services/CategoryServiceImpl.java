@@ -1,5 +1,7 @@
 package dev.naman.productservice.services;
 
+import dev.naman.productservice.dtos.CategoryDto;
+import dev.naman.productservice.mapper.CategoryMapper;
 import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -75,5 +78,15 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         return titles;
+    }
+
+    @Override
+    public List<CategoryDto> getAllCategories() {
+        List<Category> categoryList = categoryRepository.findAll();
+
+        List<CategoryDto> categoryDtoList = categoryList.stream().map(category ->
+                CategoryMapper.convertCategoryEntityToCategoryDto(category)).collect(Collectors.toList());
+
+        return categoryDtoList;
     }
 }

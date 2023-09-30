@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/*
 @Repository("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
 
@@ -21,7 +21,7 @@ public class FakeStoreProductService implements ProductService {
     private GenericProductDto convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto) {
 
         GenericProductDto product = new GenericProductDto();
-        product.setId(fakeStoreProductDto.getId());
+        product.setId(fakeStoreProductDto.getId().toString());
         product.setImage(fakeStoreProductDto.getImage());
         product.setDescription(fakeStoreProductDto.getDescription());
         product.setTitle(fakeStoreProductDto.getTitle());
@@ -42,8 +42,8 @@ public class FakeStoreProductService implements ProductService {
     }
 
     @Override
-    public GenericProductDto getProductById(Long id) throws NotFoundException {
-        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.getProductById(id));
+    public GenericProductDto getProductById(String id) throws NotFoundException {
+        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.getProductById(0l));
     }
 
     @Override
@@ -60,4 +60,4 @@ public class FakeStoreProductService implements ProductService {
     public GenericProductDto deleteProduct(Long id) {
         return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.deleteProduct(id));
     }
-}
+}*/

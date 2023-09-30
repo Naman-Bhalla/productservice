@@ -13,8 +13,9 @@ import java.util.UUID;
 import java.util.function.Function;
 
 @Repository
-public interface ProductRepository
-extends JpaRepository<Product, UUID> {
+public interface ProductRepository extends JpaRepository<Product, UUID> {
+
+    void deleteById(UUID uuid);
 
     Product findByTitleEquals(String title);
 

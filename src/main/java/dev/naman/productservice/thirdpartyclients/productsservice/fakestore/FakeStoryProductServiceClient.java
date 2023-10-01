@@ -2,11 +2,13 @@ package dev.naman.productservice.thirdpartyclients.productsservice.fakestore;
 
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
+import dev.naman.productservice.models.Product;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpMessageConverterExtractor;
 import org.springframework.web.client.RequestCallback;
 import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
@@ -14,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 /***
  * Wrapper over FakeStore API
@@ -90,5 +93,29 @@ public class FakeStoryProductServiceClient {
                 requestCallback, responseExtractor, id);
 
         return response.getBody();
+    }
+
+    public GenericProductDto updateProductById(UUID uuid, GenericProductDto genericProductDto) throws NotFoundException {
+        return null;
+    }
+
+    public FakeStoreProductDto updateProductById(Long id, GenericProductDto genericProductDto) throws NotFoundException {
+        RestTemplate restTemplate = restTemplateBuilder.build();
+
+//        GenericProductDto genericProductDto1 = restTemplate.patchForObject(specificProductRequestUrl, genericProductDto, GenericProductDto.class, id);
+
+        RequestCallback requestCallback = restTemplate.httpEntityCallback(genericProductDto, FakeStoreProductDto.class);
+        ResponseExtractor<ResponseEntity<FakeStoreProductDto>> responseExtractor =
+                restTemplate.responseEntityExtractor(FakeStoreProductDto.class);
+        ResponseEntity<FakeStoreProductDto> response = restTemplate.execute(specificProductRequestUrl, HttpMethod.PUT,
+                requestCallback, responseExtractor, id);
+
+        return response.getBody();
+//
+//        ResponseEntity<FakeStoreProductDto> response = restTemplate.patchForObject(
+//                productRequestsBaseUrl, genericProductDto, FakeStoreProductDto.class
+//        );
+//
+//        return response;
     }
 }

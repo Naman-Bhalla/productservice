@@ -71,4 +71,14 @@ public class FakeStoreProductService implements ProductService {
     public GenericProductDto deleteProduct(Long id) {
         return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.deleteProduct(id));
     }
+
+    @Override
+    public GenericProductDto updateProductById(UUID uuid, GenericProductDto genericProductDto) throws NotFoundException {
+        return fakeStoryProductServiceClient.updateProductById(uuid, genericProductDto);
+    }
+
+    @Override
+    public GenericProductDto updateProductById(Long id, GenericProductDto genericProductDto) throws NotFoundException {
+        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.updateProductById(id, genericProductDto));
+    }
 }

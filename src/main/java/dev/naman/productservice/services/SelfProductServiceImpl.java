@@ -1,5 +1,6 @@
 package dev.naman.productservice.services;
 
+import dev.naman.productservice.dtos.convertor.ProductConvertor;
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.models.Category;
@@ -8,7 +9,6 @@ import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.ProductRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +19,7 @@ import java.util.UUID;
 public class SelfProductServiceImpl implements ProductService {
 
     ProductRepository productRepository;
+
     public SelfProductServiceImpl(ProductRepository productRepository){
         this.productRepository = productRepository;
     }
@@ -26,7 +27,7 @@ public class SelfProductServiceImpl implements ProductService {
     public GenericProductDto getProductById(UUID uuid) {
         Product product = productRepository.findById(uuid).get();
 
-        return GetGenericProductDto(product);
+        return ProductConvertor.getGenericProductDto(product);
     }
 
     @Override
@@ -35,23 +36,27 @@ public class SelfProductServiceImpl implements ProductService {
     }
 
     @Override
-    public GenericProductDto createProduct(GenericProductDto product) {
-        Product product1 = new Product();
+    public GenericProductDto createProduct(GenericProductDto genericProductDto) {
+        Product product = ProductConvertor.getProductDto(genericProductDto);
+
+        productRepository.save(product);
+
+//        Product product1 = new Product();
 
 
-        product1.setTitle(product.getTitle());
-        product1.setDescription(product.getDescription());
-        Category category = new Category();
-        category.setName(product.getCategory());
-        product1.setCategory(category);
-        Price price = new Price();
-        price.setPrice(product.getPrice());
-        product1.setPrice(price);
-        product1.setImage(product.getImage());
+//        product1.setTitle(genericProductDto.getTitle());
+//        product1.setDescription(genericProductDto.getDescription());
+//        Category category = new Category();
+//        category.setName(genericProductDto.getCategory());
+//        product1.setCategory(category);
+//        Price price = new Price();
+//        price.setPrice(genericProductDto.getPrice());
+//        product1.setPrice(price);
+//        product1.setImage(genericProductDto.getImage());
+//
+//        productRepository.save(product1);
 
-        productRepository.save(product1);
-
-        return GetGenericProductDto(product1);
+        return ProductConvertor.getGenericProductDto(product);
     }
 
     @Override
@@ -61,7 +66,7 @@ public class SelfProductServiceImpl implements ProductService {
         List<Product> products = productRepository.findAll();
 
         for(Product product : products){
-            genericProductDtos.add(GetGenericProductDto(product));
+            genericProductDtos.add(ProductConvertor.getGenericProductDto(product));
         }
 
         return genericProductDtos;
@@ -79,16 +84,29 @@ public class SelfProductServiceImpl implements ProductService {
         return null;
     }
 
-    private GenericProductDto GetGenericProductDto(Product product){
-        GenericProductDto genericProductDto = new GenericProductDto();
+    @Override
+    public GenericProductDto updateProductById(UUID uuid, GenericProductDto genericProductDto) throws NotFoundException{
+        //Product product = ProductConvertor.getProductDto(genericProductDto);
+        Product product = productRepository.getById(uuid);
 
-        genericProductDto.setUuid(product.getUuid());
-        genericProductDto.setTitle(product.getTitle());
-        genericProductDto.setDescription(product.getDescription());
-        genericProductDto.setCategory(product.getCategory().getName());
-        genericProductDto.setPrice(product.getPrice().getPrice());
-        genericProductDto.setImage(product.getImage());
+        product.setTitle(genericProductDto.getTitle());
+        product.setDescription(genericProductDto.getDescription());
+        Category category = new Category();
+        category.setName(genericProductDto.getCategory());
+        product.setCategory(category);
+        Price price = new Price();
+        price.setPrice(genericProductDto.getPrice());
+        product.setPrice(price);
+        product.setImage(genericProductDto.getImage());
 
-        return genericProductDto;
+        productRepository.save(product);
+        return ProductConvertor.getGenericProductDto(product);
     }
+
+    @Override
+    public GenericProductDto updateProductById(Long id, GenericProductDto genericProductDto) {
+        return null;
+    }
+
+
 }

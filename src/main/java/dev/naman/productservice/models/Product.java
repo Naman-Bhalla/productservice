@@ -9,6 +9,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product extends BaseModel {
+    @ManyToOne(cascade = {CascadeType.PERSIST})
+    @JoinColumn(name = "category")
+    private Category category;
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private Price price;
     private String title;
     private String description;
     private String image;
@@ -16,11 +21,6 @@ public class Product extends BaseModel {
     // => L to R: 1 : 1
     // => R to L: m : 1
     // => Ans:    m : 1
-    @ManyToOne(cascade = {CascadeType.PERSIST})
-    @JoinColumn(name = "category")
-    private Category category;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    private Price price;
 //    private double price;
 }

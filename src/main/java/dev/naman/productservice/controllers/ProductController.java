@@ -71,13 +71,29 @@ public class ProductController {
     }
 
     @PostMapping
-    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
+    public ResponseEntity<GenericProductDto> createProduct(@RequestBody GenericProductDto product) {
 //        System.out.println(product.name);
-        return productService.createProduct(product);
+        return new ResponseEntity<GenericProductDto>(
+                productService.createProduct(product),
+                HttpStatus.OK
+        );
+//        return productService.createProduct(product);
     }
 
     @PutMapping("{id}")
-    public void updateProductById() {
+    public ResponseEntity<GenericProductDto> updateProductById(@PathVariable("id") Long id, @RequestBody GenericProductDto genericProductDto) throws NotFoundException {
+        return new ResponseEntity<GenericProductDto>(
+                productService.updateProductById(id, genericProductDto),
+                HttpStatus.OK
+                );
 
+    }
+
+    @PutMapping("/uuid/{uuid}")
+    public ResponseEntity<GenericProductDto> updateProductByUUID(@PathVariable("uuid") UUID uuid, @RequestBody GenericProductDto genericProductDto) throws NotFoundException{
+        return new ResponseEntity<GenericProductDto>(
+                productService.updateProductById(uuid, genericProductDto),
+                HttpStatus.OK
+                );
     }
 }

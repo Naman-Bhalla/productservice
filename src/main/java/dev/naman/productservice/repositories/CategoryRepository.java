@@ -14,6 +14,8 @@ extends JpaRepository<Category, UUID> {
 
     Optional<Category> findById(UUID uuid);
 
+    Optional<Category> findByName(String name);
+
     @Override
     List<Category> findAllById(Iterable<UUID> uuids);
 }

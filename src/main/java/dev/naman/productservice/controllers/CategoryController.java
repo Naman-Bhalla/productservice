@@ -1,42 +1,41 @@
 package dev.naman.productservice.controllers;
 
+import dev.naman.productservice.dtos.CategoryDto;
 import dev.naman.productservice.dtos.GetProductTitlesRequestDto;
-import dev.naman.productservice.dtos.ProductDto;
-import dev.naman.productservice.models.Category;
-import dev.naman.productservice.models.Product;
+
+import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.services.CategoryService;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
+
+    @Autowired
     private CategoryService categoryService;
 
-    public CategoryController(CategoryService categoryService) {
-        this.categoryService = categoryService;
+
+    // #4 - Get in category
+    @GetMapping("/{uuid}")
+    public CategoryDto getCategory(@PathVariable("uuid") String uuid) throws NotFoundException {
+        return categoryService.getCategory(uuid);
+
     }
 
-    @GetMapping("/{uuid}")
-    public List<ProductDto> getCategory(@PathVariable("uuid") String uuid) {
-        List<Product> products = categoryService.getCategory(uuid).getProducts();
 
-        List<ProductDto> productDtos = new ArrayList<>();
-
-        for (Product product: products) {
-            ProductDto productDto = new ProductDto();
-            productDto.setDescription(product.getDescription());
-            productDto.setTitle(product.getTitle());
-            productDto.setImage(product.getImage());
-            productDto.setPrice(product.getPrice());
-            productDtos.add(productDto);
-//            productDto.se
+    // #3 - Get all Categories
+    @GetMapping
+    public List<CategoryDto> getAllCategory(@RequestParam("name") String name) throws NotFoundException {
+        if (StringUtils.isNotEmpty(name)) {
+            // #4.1 - Get in category by Name
+            return categoryService.getCategoryByName(name);
         }
 
-        return productDtos;
+        return categoryService.getAllCategories();
     }
 
     @GetMapping("/titles/")

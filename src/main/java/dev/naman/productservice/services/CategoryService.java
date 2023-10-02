@@ -1,10 +1,13 @@
 package dev.naman.productservice.services;
 
-import dev.naman.productservice.models.Category;
+import dev.naman.productservice.dtos.GenericCategoryDto;
+import dev.naman.productservice.dtos.GenericProductDto;
+import dev.naman.productservice.exceptions.NotFoundException;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CategoryService {
-    Category getCategory(String uuid);
-    List<String> getProductTitles(List<String> categoryUUIDs);
+    List<GenericCategoryDto> getAllCategories() throws NotFoundException;
+    List<GenericProductDto> getProductByCategory(UUID uuid) throws NotFoundException;
 }

@@ -1,7 +1,7 @@
 package dev.naman.productservice.controllers;
 
 import dev.naman.productservice.exceptions.NotFoundException;
-import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoryProductServiceClient;
+import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductServiceClient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +12,10 @@ import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class ProductControllerTest {
+class ProductControllerTest {
 
     @Autowired
-    private FakeStoryProductServiceClient fakeStoryProductServiceClient;
+    private FakeStoreProductServiceClient fakeStoryProductServiceClient;
 
 
     @Test

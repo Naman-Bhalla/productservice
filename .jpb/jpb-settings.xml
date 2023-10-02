@@ -5,7 +5,7 @@
     <persistence-units>
       <persistence-unit name="Default">
         <packages>
-          <package value="dev.naman.productservice" />
+          <package value="dev.devesh.productservice" />
         </packages>
       </persistence-unit>
     </persistence-units>

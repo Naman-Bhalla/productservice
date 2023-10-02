@@ -35,7 +35,7 @@ public class ProductController {
 //        this.productService = productService;
 //    }
 
-    // GET /products {}
+    // #1 - Get All Products
     @GetMapping
     public List<GenericProductDto> getAllProducts() {
         return productService.getAllProducts();
@@ -43,31 +43,31 @@ public class ProductController {
 
     // localhost:8080/products/{id}
     // localhost:8080/products/123
+    // #2 - Get a single Product
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
-        GenericProductDto productDto = productService.getProductById(id);
-        if (productDto == null) {
-            // throw NotFoundException
-        }
-        return productDto;
+    public GenericProductDto getProductById(@PathVariable("id") String id) throws NotFoundException {
+        return productService.getProductById(id);
     }
 
+    // #7 - Delete a product
     @DeleteMapping("{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
+    public ResponseEntity<String> deleteProductById(@PathVariable("id") String id) throws NotFoundException {
         return new ResponseEntity<>(
                 productService.deleteProduct(id),
                 HttpStatus.OK
         );
     }
 
+    // #5 - Add new Product
     @PostMapping
-    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
+    public String createProduct(@RequestBody GenericProductDto product) {
 //        System.out.println(product.name);
         return productService.createProduct(product);
     }
 
+    // #6 - Update a product
     @PutMapping("{id}")
-    public void updateProductById() {
+    public void updateProductById(@RequestBody GenericProductDto product) {
 
     }
 }

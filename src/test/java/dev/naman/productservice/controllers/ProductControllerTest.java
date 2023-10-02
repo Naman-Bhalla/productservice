@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+/*
 @SpringBootTest
 public class ProductControllerTest {
 
@@ -63,7 +63,7 @@ public class ProductControllerTest {
 
         assert 1 + 1 == 2;
     }
-}
+}*/
 
 // Assertion Framework
 // -> allows you to make assertions

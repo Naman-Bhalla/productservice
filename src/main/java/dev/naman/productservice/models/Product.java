@@ -1,10 +1,7 @@
 package dev.naman.productservice.models;
 
-import jakarta.annotation.Nullable;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Getter
@@ -26,7 +23,7 @@ public class Product extends BaseModel {
     @JoinColumn(name = "category")
     private Category category;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.LAZY)
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, fetch = FetchType.EAGER)
 //    @Fetch(FetchMode.JOIN)
     private Price price;
     private int inventoryCount;

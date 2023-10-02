@@ -1,11 +1,13 @@
 package dev.naman.productservice.services;
 
+import dev.naman.productservice.dtos.CategoryDto;
+import dev.naman.productservice.exceptions.NotFoundException;
+import dev.naman.productservice.mapper.CategoryMapper;
 import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
 import dev.naman.productservice.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,19 +26,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategory(String uuid) {
+    public CategoryDto getCategory(String uuid) throws NotFoundException {
         Optional<Category> categoryOptional = categoryRepository.findById(UUID.fromString(uuid));
 
         if (categoryOptional.isEmpty()) {
-            return null;
+            throw new NotFoundException(uuid + " catgeoryId is not in DB");
         }
 
-        Category category = categoryOptional.get();
-
-        List<Product> products = category.getProducts();
-
-
-        return category;
+        return CategoryMapper.convertCategoryEntityToCategoryDto(categoryOptional.get());
     }
 
     public List<String> getProductTitles(List<String> categoryUUIDs) {
@@ -75,5 +72,24 @@ public class CategoryServiceImpl implements CategoryService {
         }
 
         return titles;
+    }
+
+    @Override
+    public List<CategoryDto> getAllCategories() {
+        List<Category> categoryList = categoryRepository.findAll();
+
+        List<CategoryDto> categoryDtoList = categoryList.stream()
+                                .map(CategoryMapper::convertCategoryEntityToCategoryDto).toList();
+
+        return categoryDtoList;
+    }
+
+    @Override
+    public List<CategoryDto> getCategoryByName(String name) throws NotFoundException {
+        Optional<Category> categoryOptional = categoryRepository.findByName(name);
+        if(categoryOptional.isEmpty()) {
+            throw new NotFoundException(name + " catgeory is not in DB");
+        }
+        return List.of(CategoryMapper.convertCategoryEntityToCategoryDto(categoryOptional.get()));
     }
 }

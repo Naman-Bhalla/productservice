@@ -29,14 +29,18 @@ public class ProductMapper {
         product.setDescription(productDto.getDescription());
         product.setImage(productDto.getImage());
 
-        Category category = categoryOptional.isPresent()?categoryOptional.get():new Category(productDto.getCategory(), new ArrayList<>());
+        product.setCategory(getProductCategory(productDto.getCategory(), categoryOptional, product));
+        product.setPrice(new Price("INR", productDto.getPrice()));
+
+        return product;
+    }
+
+    public static Category getProductCategory(String categoryName, Optional<Category> categoryOptional, Product product) {
+        Category category = categoryOptional.isPresent()? categoryOptional.get():new Category(categoryName, new ArrayList<>());
         List<Product> categoryProductList = category.getProducts();
         categoryProductList.add(product);
         category.setProducts(categoryProductList);
 
-        product.setCategory(category);
-        product.setPrice(new Price("INR", productDto.getPrice()));
-
-        return product;
+        return category;
     }
 }

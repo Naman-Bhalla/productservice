@@ -14,4 +14,6 @@ public interface ProductService {
     List<GenericProductDto> getAllProducts();
 
    String deleteProduct(String idStr) throws NotFoundException;
+
+    GenericProductDto updateProduct(GenericProductDto product) throws NotFoundException;
 }

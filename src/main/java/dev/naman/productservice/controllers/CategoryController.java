@@ -3,14 +3,14 @@ package dev.naman.productservice.controllers;
 import dev.naman.productservice.dtos.CategoryDto;
 import dev.naman.productservice.dtos.GetProductTitlesRequestDto;
 import dev.naman.productservice.dtos.ProductDto;
-import dev.naman.productservice.models.Category;
+import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.services.CategoryService;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/categories")
@@ -21,28 +21,21 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    // #4 - Get in category
     @GetMapping("/{uuid}")
-    public List<ProductDto> getCategory(@PathVariable("uuid") String uuid) {
-        List<Product> products = categoryService.getCategory(uuid).getProducts();
+    public CategoryDto getCategory(@PathVariable("uuid") String uuid) throws NotFoundException {
+        return categoryService.getCategory(uuid);
 
-        List<ProductDto> productDtos = new ArrayList<>();
-
-        for (Product product: products) {
-            ProductDto productDto = new ProductDto();
-            productDto.setDescription(product.getDescription());
-            productDto.setTitle(product.getTitle());
-            productDto.setImage(product.getImage());
-            productDto.setPrice(product.getPrice());
-            productDtos.add(productDto);
-//            productDto.se
-        }
-
-        return productDtos;
     }
 
-    @GetMapping
-    public List<CategoryDto> getAllCategory() {
 
+    // #3 - Get all Categories
+    @GetMapping
+    public List<CategoryDto> getAllCategory(@RequestParam("name") String name) throws NotFoundException {
+        if (ObjectUtils.isNotEmpty(name)) {
+            // #4.1 - Get in category by Name
+            return categoryService.getCategoryByName(name);
+        }
 
         return categoryService.getAllCategories();
     }

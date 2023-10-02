@@ -8,9 +8,11 @@ import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
 import dev.naman.productservice.repositories.ProductRepository;
 import dev.naman.productservice.utility.ProductUtility;
+import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -66,5 +68,31 @@ public class SelfProductServiceImpl implements ProductService {
         }
         productRepository.deleteById(uuid);
         return "product deleted";
+    }
+
+    @Override
+    public GenericProductDto updateProduct(GenericProductDto productDto) throws NotFoundException {
+        Optional<Product> productOptional = productRepository.findById(ProductUtility.createUuidFromString(productDto.getId()));
+        if (productOptional.isEmpty()) {
+            throw new NotFoundException("No product for given uuid: " + productDto.getId());
+        }
+        Product productEntity = updateProductDetails(productDto, productOptional.get());
+        productRepository.save(productEntity);
+
+        return getProductById(productDto.getId());
+    }
+
+    private Product updateProductDetails(GenericProductDto productDto, Product product) {
+        product.setTitle(productDto.getTitle());
+        product.setDescription(productDto.getDescription());
+        product.setImage(productDto.getImage());
+        product.getPrice().setPrice(productDto.getPrice());
+
+        if (!productDto.getCategory().equalsIgnoreCase(product.getCategory().getName())) {
+            Optional<Category> categoryOptional = categoryRepository.findByName(productDto.getCategory());
+            product.setCategory(ProductMapper.getProductCategory(productDto.getCategory(), categoryOptional, product));
+        }
+
+        return product;
     }
 }

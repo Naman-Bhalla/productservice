@@ -64,7 +64,11 @@
             <artifactId>flyway-mysql</artifactId>
             <version>9.22.2</version>
         </dependency>-->
-
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+        </dependency>
     </dependencies>
 
     <build>

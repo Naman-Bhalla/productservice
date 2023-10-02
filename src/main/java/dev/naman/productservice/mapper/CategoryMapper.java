@@ -18,8 +18,8 @@ public class CategoryMapper {
 
         CategoryDto categoryDto = new CategoryDto();
         categoryDto.setName(category.getName());
-        List<ProductDto> productDtoList = category.getProducts().stream().map(product ->
-                convertCategoryProductToProduct(product)).collect(Collectors.toList());
+        List<ProductDto> productDtoList = category.getProducts().stream()
+                            .map(CategoryMapper::convertCategoryProductToProduct).toList();
 
         categoryDto.setProducts(productDtoList);
 
@@ -31,25 +31,9 @@ public class CategoryMapper {
         productDto.setTitle(product.getTitle());
         productDto.setDescription(product.getDescription());
         productDto.setImage(product.getImage());
-        productDto.setPrice(product.getPrice());
+        productDto.setPrice(product.getPrice().getPrice());
 
         return productDto;
     }
 
-    public static Product convertProductDtoToProductEntity(GenericProductDto productDto, Optional<Category> categoryOptional) {
-        Product product = new Product();
-        product.setTitle(productDto.getTitle());
-        product.setDescription(productDto.getDescription());
-        product.setImage(productDto.getImage());
-
-        Category category = categoryOptional.isPresent()?categoryOptional.get():new Category(productDto.getCategory(), new ArrayList<>());
-        List<Product> categoryProductList = category.getProducts();
-        categoryProductList.add(product);
-        category.setProducts(categoryProductList);
-
-        product.setCategory(category);
-        product.setPrice(new Price("INR", productDto.getPrice()));
-
-        return product;
-    }
 }

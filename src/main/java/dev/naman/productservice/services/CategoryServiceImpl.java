@@ -5,7 +5,6 @@ import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
 import dev.naman.productservice.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;

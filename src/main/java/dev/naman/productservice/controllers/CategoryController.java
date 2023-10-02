@@ -2,14 +2,12 @@ package dev.naman.productservice.controllers;
 
 import dev.naman.productservice.dtos.GetProductTitlesRequestDto;
 import dev.naman.productservice.dtos.ProductDto;
-import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.services.CategoryService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/categories")

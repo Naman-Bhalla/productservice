@@ -3,6 +3,7 @@ package dev.naman.productservice.controllers;
 import dev.naman.productservice.dtos.ExceptionDto;
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
+import dev.naman.productservice.models.Product;
 import dev.naman.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;

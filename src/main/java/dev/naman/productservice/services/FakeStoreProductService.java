@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
-
-@Repository("fakeStoreProductService")
+@Service
+//@Repository("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
 
     private FakeStoryProductServiceClient fakeStoryProductServiceClient;
@@ -35,6 +35,11 @@ public class FakeStoreProductService implements ProductService {
         this.fakeStoryProductServiceClient = fakeStoryProductServiceClient;
     }
 
+
+    @Override
+    public GenericProductDto updateProductById(GenericProductDto genericProductDto, Long id) {
+        return null;
+    }
 
     @Override
     public GenericProductDto createProduct(GenericProductDto product) {

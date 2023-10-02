@@ -4,8 +4,11 @@ import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ProductService {
+
+    GenericProductDto updateProductById(GenericProductDto genericProductDto,Long id);
 
     GenericProductDto createProduct(GenericProductDto product);
 

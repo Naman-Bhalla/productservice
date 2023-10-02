@@ -1,0 +1,27 @@
+use:
+  custom:
+    repository: false
+
+app:
+  fakestore:
+    url: https://fakestoreapi.com
+  service:
+#    type: FAKE_STORE_SERVICE
+    type: SELF_STORE_SERVICE
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/scaler
+    username: root
+    password: secret
+    driver-class-name: com.mysql.cj.jdbc.Driver
+logging:
+  level:
+    org.hibernate.sql: DEBUG

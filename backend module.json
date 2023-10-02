@@ -1,0 +1,103 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "backend module",
+    "dateExported": "2023-09-23T11:13:46.818Z",
+    "version": "1.1",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "b6e1c5dd-e2cb-4922-b1df-4b8027ff2093",
+            "colId": "94371b6c-0274-4884-a2b4-e7c59641ae59",
+            "containerId": "",
+            "name": "get product",
+            "url": "http://localhost:8080/products/2",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2023-09-07T13:35:25.110Z",
+            "modified": "2023-09-19T11:20:44.240Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "b170e220-6a4e-48c2-8b73-83bffe820c48",
+            "colId": "94371b6c-0274-4884-a2b4-e7c59641ae59",
+            "containerId": "",
+            "name": "update product",
+            "url": "http://localhost:8080/products/1",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2023-09-07T13:50:26.018Z",
+            "modified": "2023-09-19T11:37:43.927Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"samsung galaxy 2\",\n  \"price\": 25000.50,\n  \"description\": \"lorem ipsum set\",\n  \"image\": \"https://i.pravatar.cc\",\n  \"category\": \"mobile\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "877bcd65-e71b-4beb-81fd-6de44c07e228",
+            "colId": "94371b6c-0274-4884-a2b4-e7c59641ae59",
+            "containerId": "",
+            "name": "create product",
+            "url": "http://localhost:8080/products/",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2023-09-19T10:39:37.695Z",
+            "modified": "2023-09-23T10:43:05.370Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"title\": \"macbook m2\",\n  \"price\": 195000.00,\n  \"description\": \"lorem ipsum set\",\n  \"image\": \"https://i.pravatar.cc\",\n  \"category\": \"laptop\"\n}",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7b3b931e-8358-42b1-9e18-bbadb883000e",
+            "colId": "94371b6c-0274-4884-a2b4-e7c59641ae59",
+            "containerId": "",
+            "name": "delete product",
+            "url": "http://localhost:8080/products/52",
+            "method": "DELETE",
+            "sortNum": 40000,
+            "created": "2023-09-19T10:39:53.512Z",
+            "modified": "2023-09-23T10:44:50.188Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "0344dfd2-d823-4ae7-9b9b-6c42888ea2ba",
+            "colId": "94371b6c-0274-4884-a2b4-e7c59641ae59",
+            "containerId": "",
+            "name": "get all product",
+            "url": "http://localhost:8080/products/",
+            "method": "GET",
+            "sortNum": 50000,
+            "created": "2023-09-19T10:40:40.504Z",
+            "modified": "2023-09-19T10:40:40.504Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "a497f3d5-ef54-454f-a8c3-356dfcac61ad",
+            "colId": "94371b6c-0274-4884-a2b4-e7c59641ae59",
+            "containerId": "",
+            "name": "get all products of a category",
+            "url": "http://localhost:8080/categories/computer/products",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2023-09-22T13:35:37.939Z",
+            "modified": "2023-09-22T16:07:23.326Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        }
+    ]
+}

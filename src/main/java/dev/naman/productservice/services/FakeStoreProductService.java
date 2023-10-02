@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Repository("fakeStoreProductService")
-public class FakeStoreProductService implements ProductService {
-
+//@Repository("fakeStoreProductService")
+public class FakeStoreProductService /*implements ProductService*/ {
+/*
     private FakeStoryProductServiceClient fakeStoryProductServiceClient;
 
     private GenericProductDto convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto) {
@@ -59,5 +59,5 @@ public class FakeStoreProductService implements ProductService {
     @Override
     public GenericProductDto deleteProduct(Long id) {
         return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.deleteProduct(id));
-    }
+    }*/
 }

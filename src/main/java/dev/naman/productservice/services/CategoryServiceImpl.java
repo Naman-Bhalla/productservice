@@ -1,5 +1,8 @@
 package dev.naman.productservice.services;
 
+import dev.naman.productservice.dtos.CategoryDto;
+import dev.naman.productservice.exceptions.NotFoundException;
+import dev.naman.productservice.mapper.CategoryMapper;
 import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
@@ -11,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -23,57 +27,44 @@ public class CategoryServiceImpl implements CategoryService {
         this.productRepository = productRepository;
     }
 
+
     @Override
-    public Category getCategory(String uuid) {
+    public CategoryDto getCategory(String uuid) throws NotFoundException {
         Optional<Category> categoryOptional = categoryRepository.findById(UUID.fromString(uuid));
 
         if (categoryOptional.isEmpty()) {
-            return null;
+            throw new NotFoundException(uuid + " catgeoryId is not in DB");
         }
-
-        Category category = categoryOptional.get();
-
-        List<Product> products = category.getProducts();
-
-
-        return category;
+        return CategoryMapper.convertCategoryEntityToCategoryDto(categoryOptional.get());
     }
 
+    @Override
     public List<String> getProductTitles(List<String> categoryUUIDs) {
-        List<UUID> uuids = new ArrayList<>();
-
-        for (String uuid: categoryUUIDs) {
-            uuids.add(UUID.fromString(uuid));
-        }
-//
-//        List<Category> categories = categoryRepository.findAllById(uuids);
-//
-//
-//        List<String> titles = new ArrayList<>();
-//
-//        categories.forEach(
-//                category -> {
-//                    category.getProducts().forEach(
-//                            product -> {
-//                                titles.add(product.getTitle());
-//                            }
-//                    );
-//                }
-//        );
-//
-//
-//        return titles;
+        List<UUID> uuids = categoryUUIDs.stream().map(UUID::fromString).toList();
 
         List<Category> categories = categoryRepository.findAllById(uuids);
 
         List<Product> products = productRepository.findAllByCategoryIn(categories);
 
-        List<String> titles = new ArrayList<>();
+        return products.stream().map(Product::getTitle).toList();
 
-        for (Product p: products) {
-            titles.add(p.getTitle());
+    }
+
+    @Override
+    public List<CategoryDto> getAllCategories() {
+        List<Category> categoryList = categoryRepository.findAll();
+
+        return categoryList.stream()
+                .map(CategoryMapper::convertCategoryEntityToCategoryDto).toList();
+
+    }
+
+    @Override
+    public List<CategoryDto> getCategoryByName(String name) throws NotFoundException {
+        Optional<Category> categoryOptional = categoryRepository.findByName(name);
+        if(categoryOptional.isEmpty()) {
+            throw new NotFoundException(name + " catgeory is not in DB");
         }
-
-        return titles;
+        return List.of(CategoryMapper.convertCategoryEntityToCategoryDto(categoryOptional.get()));
     }
 }

@@ -14,16 +14,13 @@ import java.util.function.Function;
 
 @Repository
 public interface ProductRepository
-extends JpaRepository<Product, UUID> {
+extends JpaRepository<Product, Long> {
 
     Product findByTitleEquals(String title);
 
     Product findByTitleEqualsAndPrice_PriceOrderByPrice_price(String title, double price);
 
     List<Product> findAllByPrice_Currency(String currency);
-
-    @Override
-    void delete(Product entity);
 
     long countAllByPrice_Currency(String currency);
 

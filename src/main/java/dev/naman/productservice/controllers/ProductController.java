@@ -2,6 +2,7 @@ package dev.naman.productservice.controllers;
 
 import dev.naman.productservice.dtos.ExceptionDto;
 import dev.naman.productservice.dtos.GenericProductDto;
+import dev.naman.productservice.dtos.ProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.services.ProductService;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,7 +38,7 @@ public class ProductController {
 
     // GET /products {}
     @GetMapping
-    public List<GenericProductDto> getAllProducts() {
+    public List<GenericProductDto> getAllProducts() throws NotFoundException {
         return productService.getAllProducts();
     }
 
@@ -49,7 +50,7 @@ public class ProductController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
+    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) throws NotFoundException {
         return new ResponseEntity<>(
                 productService.deleteProduct(id),
                 HttpStatus.OK
@@ -57,13 +58,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
-//        System.out.println(product.name);
-        return productService.createProduct(product);
+    public GenericProductDto createProduct(@RequestBody GenericProductDto genericProductDto) {
+        return productService.createProduct(genericProductDto);
     }
 
     @PutMapping("{id}")
-    public void updateProductById() {
-
+    public GenericProductDto updateProductById(@PathVariable("id") Long id, @RequestBody GenericProductDto genericProductDto) throws NotFoundException {
+        return productService.updateProduct(id, genericProductDto);
     }
 }

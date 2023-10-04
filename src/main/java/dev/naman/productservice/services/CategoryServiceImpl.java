@@ -24,56 +24,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category getCategory(String uuid) {
-        Optional<Category> categoryOptional = categoryRepository.findById(UUID.fromString(uuid));
-
-        if (categoryOptional.isEmpty()) {
-            return null;
-        }
-
-        Category category = categoryOptional.get();
-
-        List<Product> products = category.getProducts();
-
-
-        return category;
+    public Category getCategory(long id) {
+        return null;
     }
 
-    public List<String> getProductTitles(List<String> categoryUUIDs) {
-        List<UUID> uuids = new ArrayList<>();
-
-        for (String uuid: categoryUUIDs) {
-            uuids.add(UUID.fromString(uuid));
-        }
-//
-//        List<Category> categories = categoryRepository.findAllById(uuids);
-//
-//
-//        List<String> titles = new ArrayList<>();
-//
-//        categories.forEach(
-//                category -> {
-//                    category.getProducts().forEach(
-//                            product -> {
-//                                titles.add(product.getTitle());
-//                            }
-//                    );
-//                }
-//        );
-//
-//
-//        return titles;
-
-        List<Category> categories = categoryRepository.findAllById(uuids);
-
-        List<Product> products = productRepository.findAllByCategoryIn(categories);
-
-        List<String> titles = new ArrayList<>();
-
-        for (Product p: products) {
-            titles.add(p.getTitle());
-        }
-
-        return titles;
+    @Override
+    public List<String> getProductTitles(List<Long> categoryIDs) {
+        return null;
     }
 }

@@ -8,9 +8,10 @@ import java.util.UUID;
 
 @MappedSuperclass
 public class BaseModel {
+
     @Id
-    @GeneratedValue(generator = "naman")
-    @GenericGenerator(name = "naman", strategy = "uuid2")
+    @GeneratedValue(generator = "uuidGenerator")
+    @GenericGenerator(name = "uuidGenerator", strategy = "uuid2")
     @Column(name = "id", columnDefinition = "binary(16)", nullable = false, updatable = false)
-    private UUID uuid;
+    UUID uuid;
 }

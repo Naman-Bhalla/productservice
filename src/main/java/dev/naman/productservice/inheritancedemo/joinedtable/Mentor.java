@@ -1,4 +1,4 @@
-package dev.naman.productservice.inheritancedemo.joinedtable;
+package com.js.productservice.inheritanceDemo.joinedTable;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.PrimaryKeyJoinColumn;

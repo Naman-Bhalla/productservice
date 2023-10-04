@@ -1,4 +1,4 @@
-package dev.naman.productservice.inheritancedemo.singletable;
+package com.js.productservice.inheritanceDemo.singleTable;
 
 import jakarta.persistence.*;
 import lombok.Getter;

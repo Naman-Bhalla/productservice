@@ -1,21 +1,18 @@
 package dev.naman.productservice.services;
 
 import dev.naman.productservice.dtos.GenericProductDto;
-import dev.naman.productservice.dtos.ProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Price;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
 import dev.naman.productservice.repositories.ProductRepository;
-import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductDto;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Primary
 @Service("selfProductServiceImpl")

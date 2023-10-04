@@ -58,11 +58,6 @@
             <artifactId>junit</artifactId>
             <version>4.13.1</version> <!-- Or whatever JUnit you're using. -->
         </dependency>
-        <dependency>
-            <groupId>com.google.protobuf</groupId>
-            <artifactId>protobuf-java</artifactId>
-            <version>3.24.0</version>
-        </dependency>
     </dependencies>
 
     <build>

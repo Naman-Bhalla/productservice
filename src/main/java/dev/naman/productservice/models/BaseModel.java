@@ -1,12 +1,11 @@
 package dev.naman.productservice.models;
 
-import jakarta.persistence.*;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.id.factory.spi.GenerationTypeStrategy;
-
-import java.util.UUID;
 
 @MappedSuperclass
 @Getter

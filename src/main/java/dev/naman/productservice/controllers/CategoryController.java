@@ -1,9 +1,13 @@
 package dev.naman.productservice.controllers;
 
-import dev.naman.productservice.dtos.GetProductTitlesRequestDto;
+import dev.naman.productservice.dtos.GenericProductDto;
+import dev.naman.productservice.dtos.CategoryDto;
 import dev.naman.productservice.dtos.ProductDto;
+import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.services.CategoryService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -18,30 +22,15 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/{id}")
-    public List<ProductDto> getCategory(@PathVariable("id") long id) {
-        List<Product> products = categoryService.getCategory(id).getProducts();
-
-        List<ProductDto> productDtos = new ArrayList<>();
-
-        for (Product product: products) {
-            ProductDto productDto = new ProductDto();
-            productDto.setDescription(product.getDescription());
-            productDto.setTitle(product.getTitle());
-            productDto.setImage(product.getImage());
-            productDto.setPrice(product.getPrice());
-            productDtos.add(productDto);
-//            productDto.se
-        }
-
-        return productDtos;
+    @GetMapping()
+    public List<CategoryDto> getAllCategories(){
+        return categoryService.getAllCategories();
     }
 
-    @GetMapping("/titles/")
-    public List<String> getProductTitles(@RequestBody GetProductTitlesRequestDto requestDto) {
+    @GetMapping("/name/{categoryName}")
+    public ResponseEntity<List<GenericProductDto>> getProductsByACategory(@PathVariable("categoryName") String categoryName) throws NotFoundException {
 
-        List<Long> ids = requestDto.getIds();
-
-        return categoryService.getProductTitles(ids);
+        List<GenericProductDto> genericProductDtos = categoryService.getProductsByACategory(categoryName);
+        return new ResponseEntity<>(genericProductDtos, HttpStatus.OK);
     }
 }

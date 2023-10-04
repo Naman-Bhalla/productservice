@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -37,8 +39,28 @@ public class ProductController {
 
     // GET /products {}
     @GetMapping
-    public List<GenericProductDto> getAllProducts() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<GenericProductDto>> getAllProducts() {
+        List<GenericProductDto> productDtos = productService.getAllProducts();
+        if (productDtos.isEmpty()) {
+            return new ResponseEntity<>(
+                    productDtos,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+
+        List<GenericProductDto> genericProductDtos = new ArrayList<>();
+
+        for (GenericProductDto gpd: productDtos) {
+            genericProductDtos.add(gpd);
+        };
+
+//        genericProductDtos.remove(genericProductDtos.get(0));
+
+        return new ResponseEntity<>(genericProductDtos, HttpStatus.OK);
+
+//        productDtos.get(0).setId(1001L);
+//
+//        return new ResponseEntity<>(productDtos, HttpStatus.OK);
     }
 
     // localhost:8080/products/{id}
@@ -47,9 +69,14 @@ public class ProductController {
     public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
         GenericProductDto productDto = productService.getProductById(id);
         if (productDto == null) {
-            // throw NotFoundException
+            throw new NotFoundException("Product Doesn't Exist");
         }
+
+//        GenericProductDto genericProductDto = new GenericProductDto();
+//        genericProductDto.setTitle(productDto.getTitle());
         return productDto;
+
+//        Comparator
     }
 
     @DeleteMapping("{id}")

@@ -7,6 +7,8 @@ import java.util.List;
 
 @Getter
 @Setter
-public class GetProductTitlesRequestDto {
-    private List<String> uuids;
+public class CategoryDtoDB {
+    private String id;
+    private String name;
+    private List<GenericProductDtoDB> products;
 }

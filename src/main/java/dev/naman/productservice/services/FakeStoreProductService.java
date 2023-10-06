@@ -1,22 +1,19 @@
 package dev.naman.productservice.services;
 
-import dev.naman.productservice.dtos.GenericProductDto;
-import dev.naman.productservice.exceptions.NotFoundException;
-import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductDto;
-import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoryProductServiceClient;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
+import dev.pranay.productservice.dtos.GenericProductDto;
+import dev.pranay.productservice.exception.NotFoundException;
+import dev.pranay.productservice.thirdpartyclients.productservice.fakestore.FakeStoreProductDto;
+import dev.pranay.productservice.thirdpartyclients.productservice.fakestore.FakeStoreProductServiceClient;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-@Repository("fakeStoreProductService")
-public class FakeStoreProductService implements ProductService {
+@Service("fakeStoreProductService")
+public class FakeStoreProductService implements ProductService{
 
-    private FakeStoryProductServiceClient fakeStoryProductServiceClient;
+    private  FakeStoreProductServiceClient fakeStoreProductServiceClient;
 
     private GenericProductDto convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto) {
 
@@ -31,34 +28,41 @@ public class FakeStoreProductService implements ProductService {
         return product;
     }
 
-    public FakeStoreProductService(FakeStoryProductServiceClient fakeStoryProductServiceClient) {
-        this.fakeStoryProductServiceClient = fakeStoryProductServiceClient;
+
+    public FakeStoreProductService(FakeStoreProductServiceClient fakeStoreProductServiceClient) {
+        this.fakeStoreProductServiceClient = fakeStoreProductServiceClient;
     }
 
-
-    @Override
-    public GenericProductDto createProduct(GenericProductDto product) {
-        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.createProduct(product));
-    }
-
-    @Override
     public GenericProductDto getProductById(Long id) throws NotFoundException {
-        System.out.println("In product service");
-        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.getProductById(id));
+        return convertFakeStoreProductIntoGenericProduct(fakeStoreProductServiceClient.getProductById(id));
     }
 
-    @Override
+
+    public GenericProductDto createProduct(GenericProductDto product) {
+        return convertFakeStoreProductIntoGenericProduct(fakeStoreProductServiceClient.createProduct(product));
+    }
+
+
     public List<GenericProductDto> getAllProducts() {
         List<GenericProductDto> genericProductDtos = new ArrayList<>();
 
-        for (FakeStoreProductDto fakeStoreProductDto: fakeStoryProductServiceClient.getAllProducts()) {
+        for(FakeStoreProductDto fakeStoreProductDto : fakeStoreProductServiceClient.getAllProducts()){
             genericProductDtos.add(convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto));
         }
         return genericProductDtos;
     }
 
-    @Override
+
     public GenericProductDto deleteProduct(Long id) {
-        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.deleteProduct(id));
+        return convertFakeStoreProductIntoGenericProduct(fakeStoreProductServiceClient.deleteProduct(id));
+
     }
+
+
+    @Override
+    public GenericProductDto updateProductById(Long id, GenericProductDto product) {
+        return convertFakeStoreProductIntoGenericProduct(fakeStoreProductServiceClient.updateProductById(id,product));
+    }
+
+
 }

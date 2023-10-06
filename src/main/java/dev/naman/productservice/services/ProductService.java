@@ -1,17 +1,17 @@
 package dev.naman.productservice.services;
 
-import dev.naman.productservice.dtos.GenericProductDto;
-import dev.naman.productservice.exceptions.NotFoundException;
+import dev.pranay.productservice.dtos.GenericProductDto;
+import dev.pranay.productservice.exception.NotFoundException;
 
 import java.util.List;
 
 public interface ProductService {
 
-    GenericProductDto createProduct(GenericProductDto product);
-
     GenericProductDto getProductById(Long id) throws NotFoundException;
 
+    GenericProductDto createProduct(GenericProductDto product);
     List<GenericProductDto> getAllProducts();
 
-   GenericProductDto deleteProduct(Long id);
+    GenericProductDto deleteProduct(Long id);
+    GenericProductDto updateProductById(Long id, GenericProductDto Product);
 }

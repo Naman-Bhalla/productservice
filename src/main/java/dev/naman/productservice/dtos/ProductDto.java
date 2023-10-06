@@ -1,16 +1,15 @@
 package dev.naman.productservice.dtos;
 
-import dev.naman.productservice.models.Category;
-import dev.naman.productservice.models.Price;
-import jakarta.persistence.CascadeType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import dev.pranay.productservice.models.Price;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductDto {
     private String title;
 

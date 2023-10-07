@@ -86,7 +86,7 @@ Get all products.
 ![Get single product](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20single%20Product.png)
 ![Get all categories](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20all%20categories.png)
 ![Get in category](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20in%20Category.png)
-![Create product](Create a product.png)
+![Create product](CreateAProduct.png)
 ![Update product](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Update%20a%20product.png)
 ![Delete product](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Delete%20a%20product.png)
  

@@ -6,7 +6,6 @@ import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
-import dev.naman.productservice.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -29,17 +28,17 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<GenericProductDto> getProductsByACategory(String categoryName) throws NotFoundException {
+    public List<GenericProductDto> getProductsByACategory(String categoryName) {
         Optional<Category> categoryOptional = categoryRepository.findByName(categoryName);
-
-
-
-        List<Product> products = categoryOptional.get().getProducts();
         List<GenericProductDto>  genericProductDtoList = new ArrayList<>();
-        for (Product product: products
-        ) {
-            GenericProductDto genericProductDto = convertProductIntoGenericProduct(product);
-            genericProductDtoList.add(genericProductDto);
+        if(categoryOptional.isPresent()) {
+            List<Product> products = categoryOptional.get().getProducts();
+
+            for (Product product : products
+            ) {
+                GenericProductDto genericProductDto = convertProductIntoGenericProduct(product);
+                genericProductDtoList.add(genericProductDto);
+            }
         }
         return genericProductDtoList;
     }

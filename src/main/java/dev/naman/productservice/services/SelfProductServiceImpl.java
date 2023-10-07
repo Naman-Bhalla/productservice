@@ -20,7 +20,7 @@ import static dev.naman.productservice.services.CategoryServiceImpl.getGenericPr
 @Service("selfProductServiceImpl")
 public class SelfProductServiceImpl implements ProductService {
     private final CategoryRepository categoryRepository;
-    private ProductRepository productRepository;
+    private final ProductRepository productRepository;
 
     public SelfProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository) {
         this.productRepository = productRepository;
@@ -44,7 +44,7 @@ public class SelfProductServiceImpl implements ProductService {
     @Override
     public GenericProductDto getProductById(Long id) throws NotFoundException {
         Optional<Product>  product = productRepository.findById(id);
-        if(!product.isPresent())
+        if(product.isEmpty())
             throw new NotFoundException("Product not found");
         return convertProductIntoGenericProduct(product.get());
     }

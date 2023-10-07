@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.naman.productservice.dtos.CategoryDto;
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.services.CategoryService;
-import dev.naman.productservice.services.ProductService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

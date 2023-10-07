@@ -50,7 +50,7 @@ public class SelfProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<GenericProductDto> getAllProducts() throws NotFoundException {
+    public List<GenericProductDto> getAllProducts() {
         List<Product>  products = productRepository.findAll();
         List<GenericProductDto>  genericProductDtoList = new ArrayList<>();
 
@@ -65,7 +65,7 @@ public class SelfProductServiceImpl implements ProductService {
     @Override
     public GenericProductDto deleteProduct(Long id) throws NotFoundException {
         Optional<Product>  product = productRepository.findById(id);
-        if(!product.isPresent())
+        if(product.isEmpty())
             throw new NotFoundException("Product not found");
         productRepository.deleteById(id);
         return convertProductIntoGenericProduct(product.get());
@@ -75,7 +75,7 @@ public class SelfProductServiceImpl implements ProductService {
     public GenericProductDto updateProduct(Long id, GenericProductDto genericProductDto) throws NotFoundException {
 
         Optional<Product>  product = productRepository.findById(id);
-        if(!product.isPresent())
+        if(product.isEmpty())
             throw new NotFoundException("Product not found");
 
         Product updatedProduct = product.get();

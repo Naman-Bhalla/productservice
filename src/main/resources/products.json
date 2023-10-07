@@ -1,0 +1,110 @@
+[
+  {
+    "uuid": "08e8e452-a240-4b91-acc8-3514d46556be",
+    "title": "Google Pixel 7",
+    "description": "Good looking Pixel ever.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/google/google-pixel7-2.jpg",
+    "price": 741.23,
+    "category": "Google Devices",
+    "currency": "Dollar"
+  },
+  {
+    "uuid": "20b218e2-4e77-4e0a-a031-8eb9af42f0d0",
+    "title": "LG Velvet 5G",
+    "description": "Best Lg phone for gaming and photography.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/lg/lg-velvet-1.jpg",
+    "price": 78000.87,
+    "category": "LG Devices",
+    "currency": "Rupee"
+  },
+  {
+    "uuid": "217b28ee-932c-4a11-9e1e-023cf23c2afa",
+    "title": "Asus ROG Phone 6",
+    "description": "Best Asus for Gaming.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/asus/asus-rog-phone6-01.jpg",
+    "price": 55000.23,
+    "category": "Asus",
+    "currency": "Rupee"
+  },
+  {
+    "uuid": "6c532c1a-1ceb-4cd8-8f8a-48d0a5bdcd13",
+    "title": "LG V40 ThinQ",
+    "description": "Best for Camera.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/lg/lg-v40-1.jpg",
+    "price": 43000.54,
+    "category": "LG Devices",
+    "currency": "Rupee"
+  },
+  {
+    "uuid": "7207c94e-948d-4c40-9d2d-5871c811a8e6",
+    "title": "Apple iPhone 15 Plus",
+    "description": "Best Camera.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-plus-1.jpg",
+    "price": 1000.99,
+    "category": "Apple Devices",
+    "currency": "Dollar"
+  },
+  {
+    "uuid": "83f268a3-ec64-4a5b-bc38-426f694fe0c2",
+    "title": "Motorola Edge 40 Neo",
+    "description": "Best Motorola Phone ever.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/motorola/motorola-edge-40-neo-1.jpg",
+    "price": 621.79,
+    "category": "Motorola Devices",
+    "currency": "Dollar"
+  },
+  {
+    "uuid": "84121b62-51cf-4369-96f7-8f179dba49cc",
+    "title": "Apple Watch SE (2022)",
+    "description": "Best Apple watch ever.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/apple/apple-watch-8se-2022-1.jpg",
+    "price": 750.21,
+    "category": "Apple Devices",
+    "currency": "Dollar"
+  },
+  {
+    "uuid": "9c0f6a30-49f1-4299-ad2c-0aaca24d1921",
+    "title": "Asus ROG Phone 3",
+    "description": "Best Asus phone for Photography and Battery.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/asus/asus-rog-phone3-1.jpg",
+    "price": 99000.84,
+    "category": "Asus",
+    "currency": "Rupee"
+  },
+  {
+    "uuid": "9ff1a592-cb33-48d8-a473-96c598bf288a",
+    "title": "Apple iPad (2022)",
+    "description": "Best Apple iPad ever.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/apple/apple-ipad-10-2022-0.jpg",
+    "price": 78000.85,
+    "category": "Apple Devices",
+    "currency": "Rupee"
+  },
+  {
+    "uuid": "ec415494-29e4-4639-9d58-2dfc78f1cfeb",
+    "title": "Apple iPhone 15 Pro Max",
+    "description": "Best and latest iPhone Ever.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg",
+    "price": 1299.49,
+    "category": "Apple Devices",
+    "currency": "Dollar"
+  },
+  {
+    "uuid": "f77546ba-21b4-4699-9aea-6ed41ce98fd6",
+    "title": "Samsung Galaxy S22 Ultra 5G",
+    "description": "Best Screen and Camera ever.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s22-ultra-5g-2.jpg",
+    "price": 999.99,
+    "category": "Samsung Devices",
+    "currency": "Dollar"
+  },
+  {
+    "uuid": "f8e69db1-2a6b-4b78-8b91-a23b14473979",
+    "title": "LG V60 ThinQ 5G",
+    "description": "Best LG phone ever. Great customer service.",
+    "image": "https://fdn2.gsmarena.com/vv/pics/lg/lg-v60-thinq-5g-000.jpg",
+    "price": 888.9,
+    "category": "LG Devices",
+    "currency": "Dollar"
+  }
+]

@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static dev.naman.productservice.services.CategoryServiceImpl.getGenericProductDto;
+
 @Primary
 @Service("selfProductServiceImpl")
 public class SelfProductServiceImpl implements ProductService {
@@ -26,15 +28,7 @@ public class SelfProductServiceImpl implements ProductService {
     }
 
     private GenericProductDto convertProductIntoGenericProduct(Product product ) {
-
-        GenericProductDto genericProductDto  = new GenericProductDto();
-        genericProductDto.setId(product.getId());
-        genericProductDto.setImage(product.getImage());
-        genericProductDto.setDescription(product.getDescription());
-        genericProductDto.setTitle(product.getTitle());
-        genericProductDto.setPrice(product.getPrice().getPrice());
-        genericProductDto.setCategory(product.getCategory().getName());
-        return genericProductDto;
+        return getGenericProductDto(product);
     }
 
     @Override
@@ -59,8 +53,7 @@ public class SelfProductServiceImpl implements ProductService {
     public List<GenericProductDto> getAllProducts() throws NotFoundException {
         List<Product>  products = productRepository.findAll();
         List<GenericProductDto>  genericProductDtoList = new ArrayList<>();
-        if(products.stream().count() <= 0)
-            throw new NotFoundException("No products found");
+
         for (Product product: products
              ) {
             GenericProductDto genericProductDto = convertProductIntoGenericProduct(product);
@@ -90,7 +83,6 @@ public class SelfProductServiceImpl implements ProductService {
 
         productRepository.save(updatedProduct);
         return convertProductIntoGenericProduct(updatedProduct);
-
     }
 
     private void setProductFromGenericProductDto(GenericProductDto genericProductDto, Product product) {

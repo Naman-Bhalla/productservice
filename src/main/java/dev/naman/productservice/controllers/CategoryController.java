@@ -11,26 +11,40 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/categories")
 public class CategoryController {
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
     @GetMapping()
-    public List<CategoryDto> getAllCategories(){
-        return categoryService.getAllCategories();
+    public ResponseEntity<List<CategoryDto>> getAllCategories(){
+        List<CategoryDto> categoryDtoList = categoryService.getAllCategories();
+        if (categoryDtoList.isEmpty()) {
+            return new ResponseEntity<>(
+                    categoryDtoList,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        return new ResponseEntity<>(categoryDtoList, HttpStatus.OK);
     }
 
     @GetMapping("/name/{categoryName}")
     public ResponseEntity<List<GenericProductDto>> getProductsByACategory(@PathVariable("categoryName") String categoryName) throws NotFoundException {
 
         List<GenericProductDto> genericProductDtos = categoryService.getProductsByACategory(categoryName);
+        if (genericProductDtos.isEmpty()) {
+            return new ResponseEntity<>(
+                    new ArrayList<>(),
+                    HttpStatus.NOT_FOUND
+            );
+        }
         return new ResponseEntity<>(genericProductDtos, HttpStatus.OK);
     }
 }

@@ -3,6 +3,8 @@ package dev.naman.productservice.controllers;
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.services.ProductService;
+import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +13,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@NoArgsConstructor
 public class ProductController {
 //    @Autowired
     // field injection
+
+    @Autowired
     private ProductService productService;
     // ....;
     // ...;
@@ -35,8 +40,15 @@ public class ProductController {
 
     // GET /products {}
     @GetMapping
-    public List<GenericProductDto> getAllProducts() throws NotFoundException {
-        return productService.getAllProducts();
+    public ResponseEntity<List<GenericProductDto>> getAllProducts() throws NotFoundException {
+        List<GenericProductDto> productDtoList = productService.getAllProducts();
+        if (productDtoList.isEmpty()) {
+            return new ResponseEntity<>(
+                    productDtoList,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        return new ResponseEntity<>(productDtoList, HttpStatus.OK);
     }
 
     // localhost:8080/products/{id}

@@ -16,12 +16,9 @@ import java.util.Optional;
 @Service
 public class CategoryServiceImpl implements CategoryService {
     private final CategoryRepository categoryRepository;
-    private final ProductRepository productRepository;
 
-    public CategoryServiceImpl(CategoryRepository categoryRepository,
-                               ProductRepository productRepository) {
+    public CategoryServiceImpl(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-        this.productRepository = productRepository;
     }
 
     public CategoryDto convertCategoryToCategoryDto(Category category){
@@ -35,9 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     public List<GenericProductDto> getProductsByACategory(String categoryName) throws NotFoundException {
         Optional<Category> categoryOptional = categoryRepository.findByName(categoryName);
 
-        if(categoryOptional.isEmpty()){
-            throw new NotFoundException("Category Name not found in the database");
-        }
+
 
         List<Product> products = categoryOptional.get().getProducts();
         List<GenericProductDto>  genericProductDtoList = new ArrayList<>();
@@ -51,6 +46,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     private GenericProductDto convertProductIntoGenericProduct(Product product ) {
 
+        return getGenericProductDto(product);
+    }
+
+    static GenericProductDto getGenericProductDto(Product product) {
         GenericProductDto genericProductDto  = new GenericProductDto();
         genericProductDto.setId(product.getId());
         genericProductDto.setImage(product.getImage());

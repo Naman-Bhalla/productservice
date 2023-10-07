@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/productservice")
 public class UIProductDBController {
 
     private final ProductService productService;
@@ -21,15 +22,19 @@ public class UIProductDBController {
         this.productService = productService;
     }
 
-    // TODO: Add UI endpoints here
-    // Get all products
-    @GetMapping("/productservice/index")
+    // Get product by id
+    // Create product
+    // Update product
+    // Delete product
+
+
+    @GetMapping("/index")
     public String listRecords() {
 //        model.addAttribute("records", recordService.getAllRecords());
         return "index";
     }
 
-    @GetMapping("/productservice/get-all-products")
+    @GetMapping("/get-all-products")
     public String listProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
         model.addAttribute("productCount", productService.getAllProducts().size());
@@ -51,13 +56,13 @@ public class UIProductDBController {
 //        return "get-single-product";
 //    }
 
-    @GetMapping("/productservice/get-single-product")
+    @GetMapping("/get-single-product")
     public String showForm(Model model) {
         model.addAttribute("genericDto", new GenericProductDto());
         return "get-single-product";
     }
 
-    @PostMapping("/productservice/get-single-product")
+    @PostMapping("/get-single-product")
     public String fetchProduct(@ModelAttribute GenericProductDto genericProductDto, Model model) {
         try {
             UUID uuid = UUID.fromString(genericProductDto.getUuid().toString());
@@ -69,27 +74,27 @@ public class UIProductDBController {
         return "get-single-product";
     }
 
-    @GetMapping("/productservice/create-a-product")
+    @GetMapping("/create-a-product")
     public String showCreateForm(Model model) {
 
         model.addAttribute("genericProductDto", new GenericProductDto());
         return "create-a-product";
     }
 
-    @PostMapping("/productservice/create-a-product")
+    @PostMapping("/create-a-product")
     public String createProduct(@ModelAttribute GenericProductDto genericProductDto, Model model) {
 
         productService.createProduct(genericProductDto);
         return "redirect:/productservice/get-all-products";
     }
 
-    @GetMapping("/productservice/update-a-product")
+    @GetMapping("/update-a-product")
     public String showUpdateForm(Model model) {
         model.addAttribute("genericProductDto", new GenericProductDto());
         return "update-a-product";
     }
 
-    @PostMapping("/productservice/update-a-product")
+    @PostMapping("/update-a-product")
     public String showUpdateProductForm(@ModelAttribute GenericProductDto genericProductDto, Model model) {
         try {
             UUID uuid = genericProductDto.getUuid();
@@ -100,7 +105,7 @@ public class UIProductDBController {
         return "update-a-product";
     }
 
-    @PostMapping("/productservice/update-product")
+    @PostMapping("/update-product")
     public String updateProduct(@ModelAttribute GenericProductDto genericProductDto, Model model) {
         try {
             productService.updateProduct(genericProductDto.getUuid(), genericProductDto);
@@ -111,21 +116,21 @@ public class UIProductDBController {
         return "redirect:/productservice/get-all-products";
     }
 
-    @GetMapping("/productservice/delete-a-product")
+    @GetMapping("/delete-a-product")
     public String showDeleteForm(Model model) {
 
         model.addAttribute("genericProductDto", new GenericProductDto());
         return "delete-a-product";
     }
 
-    @PostMapping("/productservice/delete-a-product")
+    @PostMapping("/delete-a-product")
     public String fetchDeleteProduct(@ModelAttribute GenericProductDto genericProductDto, Model model) throws NotFoundException {
 
         model.addAttribute("genericProductDto", productService.getProductById(genericProductDto.getUuid()));
         return "delete-a-product";
     }
 
-    @PostMapping("/productservice/delete-product")
+    @PostMapping("/delete-product")
     public String deleteProduct(@ModelAttribute GenericProductDto genericProductDto, Model model) throws NotFoundException {
         try {
             productService.deleteProduct(genericProductDto.getUuid());
@@ -137,9 +142,6 @@ public class UIProductDBController {
     }
 
 
-    // Get product by id
-    // Create product
-    // Update product
-    // Delete product
+
 
 }

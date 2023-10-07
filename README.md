@@ -80,24 +80,52 @@
 
 
 
-## Screenshots from Browser and Postman
+## Screenshots from Browser  (Controller)
+===========================
 Get all products.
 ![GetAllProducts](https://github.com/jsbiresh/productservice-naman/assets/133354225/d662c475-94e6-43f8-8895-af640bffdb92)
 
+Get single product.
+![GetSingleProduct](https://github.com/jsbiresh/productservice-naman/assets/133354225/fb8e955d-99c9-49f7-8344-39d81f3b4e5d)
+
+Get all Categories
+![GetAllCategories](https://github.com/jsbiresh/productservice-naman/assets/133354225/2f289454-983d-4c10-bc60-bfdd3dbcd49b)
+
+Get in Category
+![GetInCategory](https://github.com/jsbiresh/productservice-naman/assets/133354225/08c45ba3-f9fe-4b58-ae21-22a01eefcd05)
+
+Create a product
+![CreateAProduct](https://github.com/jsbiresh/productservice-naman/assets/133354225/43522551-87ba-405a-8749-72dea172e409)
+
+Update product
+![UpdateAProduct](https://github.com/jsbiresh/productservice-naman/assets/133354225/dae550d7-eded-4c3a-b405-ab80103f873a)
+
+Delete product
+![DeleteAProduct](https://github.com/jsbiresh/productservice-naman/assets/133354225/279c6631-0a8a-4a80-ac08-31c9162945f1)
 
 
+## Screenshots from Postman  (RestController)
+===========================
+Get all products.
+![GetAllProducts](https://github.com/jsbiresh/productservice-naman/assets/133354225/fbcdd28a-2b3d-459e-be0d-fd054ce17cf3)
 
-![Get single product](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20single%20Product.png)
-![Get all categories](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20all%20categories.png)
-![Get in category](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20in%20Category.png)
-![CreateAProduct](https://raw.githubusercontent.com/jsbiresh/productservice-naman/task/CreateAProduct.png)
-![Update product](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Update%20a%20product.png)
-![Delete product](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Delete%20a%20product.png)
+Get single product.
+![GetSingleProduct](https://github.com/jsbiresh/productservice-naman/assets/133354225/156588c0-94c5-449d-87c9-34464ec879ae)
 
+Get all Categories
+![GetAllCategories](https://github.com/jsbiresh/productservice-naman/assets/133354225/cc3851fd-ec62-4613-bceb-b81b8d241d3d)
 
-======================================
+Get in Category
+![GetInCategory](https://github.com/jsbiresh/productservice-naman/assets/133354225/3a3a6475-91a0-481b-aeb5-b3d8477f28c2)
 
+Create a product
+![CreateAProduct](https://github.com/jsbiresh/productservice-naman/assets/133354225/afaa765b-75b6-457a-a876-f75e5fa1cbed)
 
+Update product
+![UpdateAProduct](https://github.com/jsbiresh/productservice-naman/assets/133354225/5c7f12a9-3967-4363-a541-f879ec78e121)
+
+Delete product
+![DeleteAProduct](https://github.com/jsbiresh/productservice-naman/assets/133354225/8a09111b-db85-4ac5-bf46-15be22c37742)
 
 
 

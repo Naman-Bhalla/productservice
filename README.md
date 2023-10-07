@@ -6,6 +6,7 @@
 - It uses MySql as Database.
 - It uses Thymeleaf Template Engine for UI.
 - It uses UUID format.
+- In this application both Controller and RestController is implemented.
 
 ## How to Access
 ### This app contains 4 Controllers

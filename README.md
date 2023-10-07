@@ -82,11 +82,30 @@
 
 ## Screenshots from Browser and Postman
 Get all products.
-![Get all products](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20all%20products.png)
+![GetAllProducts](https://github.com/jsbiresh/productservice-naman/assets/133354225/d662c475-94e6-43f8-8895-af640bffdb92)
+
+
+
+
 ![Get single product](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20single%20Product.png)
 ![Get all categories](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20all%20categories.png)
 ![Get in category](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Get%20in%20Category.png)
 ![CreateAProduct](https://raw.githubusercontent.com/jsbiresh/productservice-naman/task/CreateAProduct.png)
 ![Update product](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Update%20a%20product.png)
 ![Delete product](https://github.com/jsbiresh/productservice-naman/blob/901a5041153c4665693f2b4a7c80c1d5cd836e49/Delete%20a%20product.png)
+
+
+======================================
+
+
+
+
+
+
+
+
+
+
+
+
  

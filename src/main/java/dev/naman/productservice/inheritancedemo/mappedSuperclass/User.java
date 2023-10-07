@@ -1,4 +1,4 @@
-package com.js.productservice.inheritanceDemo.mappedSuperclass;
+package dev.naman.productservice.inheritancedemo.mappedSuperclass;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

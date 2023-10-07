@@ -1,4 +1,4 @@
-package com.js.productservice.inheritanceDemo.joinedTable;
+package dev.naman.productservice.inheritancedemo.joinedtable;
 
 import jakarta.persistence.*;
 import lombok.Getter;

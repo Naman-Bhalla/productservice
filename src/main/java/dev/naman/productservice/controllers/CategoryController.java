@@ -29,6 +29,7 @@ public class CategoryController {
         List<Product> products = categoryService.getAllProductsFromACategory(uuid).getProducts();
         List<GenericProductDto> productDtos = new ArrayList<>();
 
+
         for (Product product: products) {
             GenericProductDto productDto = new GenericProductDto();
             productDto.setDescription(product.getDescription());
@@ -47,6 +48,8 @@ public class CategoryController {
     public List<CategoryDto> getAllCategories() {
         return categoryService.getAllCategories();
     }
+
+
 
     //    @GetMapping("/titles/")
 //    public List<String> getProductTitles(@RequestBody GetProductTitlesRequestDto requestDto) {

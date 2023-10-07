@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Product List</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/CSS/styles.css}" />
+  <style>
+    nav {
+      overflow: hidden;
+    }
+
+    nav a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    nav a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .container-flex-products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h3>Get All Products | <span th:text="${productCount}"></span> <span th:text="${productCount > 1} ? 'products' : 'product'"></span> found.</h3>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="sidebar-container">
+    <div class="sidebar" style="margin-bottom: 2rem">
+      <h3>DB 7 APIs</h3>
+      <nav>
+        <a th:href="@{/productservice/get-all-products}" class="active">Get all Products</a>
+        <a th:href="@{/productservice/get-single-product}">Get a Product</a>
+        <a th:href="@{/productservice/get-all-categories}">Get all Categories</a>
+        <a th:href="@{/productservice/get-in-category}">Get in Category</a>
+        <a th:href="@{/productservice/create-a-product}">Create a Product</a>
+        <a th:href="@{/productservice/update-a-product}">Update a Product</a>
+        <a th:href="@{/productservice/delete-a-product}">Delete a Product</a>
+      </nav>
+      <hr>
+      <div>
+        <a th:href="@{/productservice/index}" style="color: white; text-decoration: none">Home Page </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-flex-products">
+    <!-- Display products -->
+    <div th:each="product : ${products}" class="product-card" >
+      <div class="product-image">
+        <img th:src="${product.image}" th:text="${product.getTitle()}">
+      </div>
+      <div class="product-details">
+        <div class="product-title">
+          <span th:text="${product.getTitle()}">Product Title</span>
+        </div>
+<!--        <div class="product-price">-->
+<!--          <span th:text="${product.getCurrency()}" class="curr-span">Currency</span>-->
+<!--          <span th:text="${product.getPrice()}" class="price-span">Price</span>-->
+<!--        </div>-->
+        <div class="product-price">
+          <span th:text="${product.getCurrency()}" class="curr-span"></span>
+          <span th:text="${product.getPrice()}" class="price-span"></span>
+        </div>
+        <div class="product-category" >
+          <span th:text="${product.getCategory()}"></span>
+        </div>
+        <hr>
+        <div class="product-id">
+          <span th:text="${product.getUuid()}">Product Id</span>
+        </div>
+      </div>
+    </div>
+
+</div>
+</div>
+<!---->
+</body>
+</html>

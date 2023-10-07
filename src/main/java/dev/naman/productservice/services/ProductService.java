@@ -5,6 +5,7 @@ import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.dtos.ProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.models.Product;
+import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Service("productService")
 public interface ProductService {
 
+    String getQualifierValue();
 
     // use for LOCAL DATABASE
     // ************************************************
@@ -20,7 +22,6 @@ public interface ProductService {
     GenericProductDto createProduct(GenericProductDto genericProductDto);
 
     List<GenericProductDto> getAllProducts();
-
 
     GenericProductDto getProductById(UUID uuid) throws NotFoundException;
 
@@ -32,16 +33,16 @@ public interface ProductService {
 
     // use for FAKESTORE API
     // ************************************************
-
-//    FakeStoreProductDto createProduct(GenericProductDto genericProductDto);
 //
-//    List<FakeStoreProductDto> getAllProducts() throws NotFoundException;
+//    GenericProductDto createProduct(GenericProductDto genericProductDto);
 //
-//    FakeStoreProductDto getProductById(String id) throws NotFoundException;
+//    List<GenericProductDto> getAllProducts() throws NotFoundException;
 //
-//    FakeStoreProductDto updateProduct(String id, FakeStoreProductDto fakeStoreProductDto) throws NotFoundException;
+//    GenericProductDto getProductById(Long id) throws NotFoundException;
 //
-//    FakeStoreProductDto deleteProduct(String id) throws NotFoundException;
+//    GenericProductDto updateProduct(Long id, FakeStoreProductDto fakeStoreProductDto) throws NotFoundException;
+//
+//    GenericProductDto deleteProduct(Long id) throws NotFoundException;
 
     // ************************************************
 }

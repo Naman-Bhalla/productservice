@@ -1,4 +1,4 @@
-package com.js.productservice.inheritanceDemo.joinedTable;
+package dev.naman.productservice.inheritancedemo.joinedtable;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

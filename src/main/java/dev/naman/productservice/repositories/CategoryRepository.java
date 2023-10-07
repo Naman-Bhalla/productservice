@@ -20,6 +20,9 @@ extends JpaRepository<Category, UUID> {
     @Override
     List<Category> findAllById(Iterable<UUID> uuids);
 
+    // get category name from category id
+    @Query(value = "SELECT name FROM Category WHERE id = :id", nativeQuery = true)
+    String findNameById(@Param("id") UUID id);
 
     @Query(value = "SELECT id FROM Product WHERE category IN (SELECT id FROM Category WHERE name = :category)", nativeQuery = true)
     List<String> findAllByCategoryIn(@Param("category") String category);

@@ -64,6 +64,12 @@
 <!--            <artifactId>flyway-mysql</artifactId>-->
 <!--            <version>9.22.2</version>-->
 <!--        </dependency>-->
+        <!--            THYMELEAF DEPENDENCY        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
 
     </dependencies>
 

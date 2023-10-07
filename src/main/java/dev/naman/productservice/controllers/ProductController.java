@@ -60,6 +60,11 @@ public class ProductController {
     @GetMapping("/{id}")
     public GenericProductDto getProductById(@PathVariable("id") UUID uuid) throws NotFoundException {
 
+        System.out.println("********************");
+        // Access the qualified bean
+        String qualifierValue = productService.getQualifierValue();
+        System.out.println("Qualifier value: " + qualifierValue);
+        System.out.println("********************");
         return productService.getProductById(uuid);
     }
 
@@ -83,7 +88,7 @@ public class ProductController {
 
 //    // Constructor Injection
 //    @Autowired
-//    public ProductController(@Qualifier("fakeStoreProductService") ProductService productService) {
+//    public ProductController(@Qualifier("fakeStoreProductServiceImpl") ProductService productService) {
 //        this.productService = productService;
 //    }
 //

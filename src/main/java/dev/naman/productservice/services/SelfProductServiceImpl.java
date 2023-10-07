@@ -1,6 +1,5 @@
 package dev.naman.productservice.services;
 
-import dev.naman.productservice.dtos.DisplayProductDto;
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.models.Category;
@@ -8,7 +7,6 @@ import dev.naman.productservice.models.Price;
 import dev.naman.productservice.models.Product;
 import dev.naman.productservice.repositories.CategoryRepository;
 import dev.naman.productservice.repositories.ProductRepository;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -56,6 +54,11 @@ public class SelfProductServiceImpl implements ProductService {
         target.setCurrency(source.getCurrency());
         target.setCategory(source.getCategory().getName());
         return target;
+    }
+
+    @Override
+    public String getQualifierValue() {
+        return "DB Product Service";
     }
 
     //    @Override
@@ -122,7 +125,6 @@ public class SelfProductServiceImpl implements ProductService {
 
     @Override
     public GenericProductDto getProductById(UUID uuid) throws NotFoundException {
-
         Optional<Product> product = productRepository.findById(UUID.fromString(uuid.toString()));
 
         if (product.isEmpty())
@@ -137,7 +139,6 @@ public class SelfProductServiceImpl implements ProductService {
         genericProductDto.setCurrency(prod.getCurrency());
         genericProductDto.setImage(prod.getImage());
         genericProductDto.setCategory(prod.getCategory().getName());
-
         return genericProductDto;
     }
 
@@ -214,3 +215,145 @@ public class SelfProductServiceImpl implements ProductService {
         return productDto;
     }
 }
+
+// NEW CODE FOR REFERENCE
+
+
+//package dev.naman.productservice.services;
+//
+//import dev.naman.productservice.dtos.GenericProductDto;
+//import dev.naman.productservice.exceptions.NotFoundException;
+//import dev.naman.productservice.models.Category;
+//import dev.naman.productservice.models.Price;
+//import dev.naman.productservice.models.Product;
+//import dev.naman.productservice.repositories.CategoryRepository;
+//import dev.naman.productservice.repositories.ProductRepository;
+//import org.springframework.stereotype.Service;
+//
+//import java.util.List;
+//import java.util.UUID;
+//import java.util.stream.Collectors;
+//
+//@Service("selfProductServiceImpl")
+//public class SelfProductServiceImpl implements ProductService {
+//
+//    private final ProductRepository productRepository;
+//    private final CategoryRepository categoryRepository;
+//
+//    public SelfProductServiceImpl(ProductRepository productRepository, CategoryRepository categoryRepository) {
+//        this.productRepository = productRepository;
+//        this.categoryRepository = categoryRepository;
+//    }
+//
+//    private GenericProductDto productToGenericProductDtoProperties(Product source) {
+//        return new GenericProductDto(
+//                source.getUuid(),
+//                source.getTitle(),
+//                source.getDescription(),
+//                source.getImage(),
+//                source.getPrice().getPrice(),
+//                source.getCurrency(),
+//                source.getCategory().getName()
+//        );
+//    }
+//
+//    private GenericProductDto copyProductDtoProperties(Product source) {
+//        return new GenericProductDto(
+//                source.getUuid(),
+//                source.getTitle(),
+//                source.getDescription(),
+//                source.getImage(),
+//                source.getPrice().getPrice(),
+//                source.getCurrency(),
+//                source.getCategory().getName()
+//        );
+//    }
+//
+//    @Override
+//    public String getQualifierValue() {
+//        return "DB Product Service";
+//    }
+//
+//    @Override
+//    public GenericProductDto createProduct(GenericProductDto genericProductDto) {
+//        Category category = categoryRepository.findByNameIgnoreCase(genericProductDto.getCategory())
+//                .orElseGet(() -> {
+//                    Category newCategory = new Category();
+//                    newCategory.setName(genericProductDto.getCategory());
+//                    return categoryRepository.save(newCategory);
+//                });
+//
+//        Product product = new Product();
+//        product.setUuid(genericProductDto.getUuid());
+//        product.setTitle(genericProductDto.getTitle());
+//        product.setDescription(genericProductDto.getDescription());
+//        product.setImage(genericProductDto.getImage());
+//
+//        Price price = new Price();
+//        price.setPrice(genericProductDto.getPrice());
+//        price.setCurrency(genericProductDto.getCurrency());
+//        product.setPrice(price);
+//
+//        product.setCategory(category);
+//
+//        Product savedProduct = productRepository.save(product);
+//        return productToGenericProductDtoProperties(savedProduct);
+//    }
+//
+//    @Override
+//    public List<GenericProductDto> getAllProducts() {
+//        return productRepository.findAll().stream()
+//                .map(this::copyProductDtoProperties)
+//                .collect(Collectors.toList());
+//    }
+//
+//    @Override
+//    public GenericProductDto getProductById(UUID uuid) throws NotFoundException {
+//        Product product = productRepository.findById(uuid)
+//                .orElseThrow(() -> new NotFoundException("Product with ID: " + uuid + " not found. Please try again."));
+//
+//        return copyProductDtoProperties(product);
+//    }
+//
+//    @Override
+//    public GenericProductDto updateProduct(UUID uuid, GenericProductDto genericProductDto) throws NotFoundException {
+//        Product product = productRepository.findById(uuid)
+//                .filter(p -> uuid.equals(p.getUuid()))
+//                .orElseThrow(() -> new NotFoundException("Product with ID: " + uuid + " not found or ID mismatch. Update failed."));
+//
+//        Category category = categoryRepository.findByNameIgnoreCase(genericProductDto.getCategory())
+//                .orElseGet(() -> {
+//                    Category newCategory = new Category();
+//                    newCategory.setName(genericProductDto.getCategory());
+//                    return categoryRepository.save(newCategory);
+//                });
+//
+//        product.setUuid(uuid);
+//        product.setTitle(genericProductDto.getTitle());
+//        product.setDescription(genericProductDto.getDescription());
+//        product.setImage(genericProductDto.getImage());
+//
+//        Price price = new Price();
+//        price.setPrice(genericProductDto.getPrice());
+//        price.setCurrency(genericProductDto.getCurrency());
+//        product.setPrice(price);
+//
+//        product.setCategory(category);
+//
+//        Product savedProduct = productRepository.save(product);
+//        return copyProductDtoProperties(savedProduct);
+//    }
+//
+//    @Override
+//    public GenericProductDto deleteProduct(UUID id) throws NotFoundException {
+//        Product product = productRepository.findById(id)
+//                .orElseThrow(() -> new NotFoundException("Product with ID: " + id + " not found. Deletion failed."));
+//
+//        GenericProductDto productDto = copyProductDtoProperties(product);
+//
+//        productRepository.delete(product);
+//        return productDto;
+//    }
+//}
+
+// OLD CODE FOR REFERENCE

@@ -1,5 +1,6 @@
-package com.js.productservice.inheritanceDemo.tablePerClass;
+package dev.naman.productservice.inheritancedemo.tablePerClass;
 
+import dev.naman.productservice.inheritancedemo.tablePerClass.User;
 import jakarta.persistence.Entity;
 import lombok.Getter;
 import lombok.Setter;

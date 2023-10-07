@@ -36,13 +36,12 @@ public class ProductserviceApplication implements CommandLineRunner {
         SpringApplication.run(ProductserviceApplication.class, args);
         // Retrieve server.port property
 //        System.out.println("SERVER RUNNING ON PORT : "+ serverPort);
-        System.out.println("SERVER RUNNING ON PORT: "+ 8585);
+        System.out.println("SERVER RUNNING ON PORT: "+ 4444);
     }
 
     @Transactional
     @Override
     public void run(String... args) throws Exception {
-
-        System.out.println("From command line runner");
+//        System.out.println("From command line runner");
     }
 }

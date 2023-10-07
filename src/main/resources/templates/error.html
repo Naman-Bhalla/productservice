@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Product List</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/CSS/styles.css}" />
+</head>
+<body>
+
+<!--<table class="list-table">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th>Id</th>-->
+<!--    <th>Name</th>-->
+<!--    <th>Description</th>-->
+<!--    <th>Price </th>-->
+<!--    <th>Currency </th>-->
+<!--    <th>Category </th>-->
+<!--    <th>Image </th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr th:each="product : ${products}">-->
+
+<!--    <td th:text="${product.getUuid()}"></td>-->
+<!--    <td th:text="${product.getTitle()}"></td>-->
+<!--    <td th:text="${product.getDescription()}"></td>-->
+<!--    <td th:text="${product.getPrice()}"></td>-->
+<!--    <td th:text="${product.getCurrency()}"></td>-->
+<!--    <td th:text="${product.getCategory()}"></td>-->
+<!--    <td th:text="${product.getImage()}"></td>-->
+
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->
+<!--<a th:href="@{'/create'}">Create New Record</a>-->
+
+<!---->
+<div class="container">
+  <div class="header">
+    <h1>Create a Product</h1>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>7 APIs</h2>
+    <nav>
+      <a th:href="@{/productservice/get-all-products}">Get all Products</a>
+      <a th:href="@{/productservice/get-single-product}">Get a Product</a>
+      <a th:href="@{/productservice/get-all-categories}">Get all Categories</a>
+      <a th:href="@{/productservice/get-in-category}">Get in Category</a>
+      <a th:href="@{/productservice/create-a-product}">Create a Product</a>
+      <a th:href="@{/productservice/update-a-product}">Update a Product</a>
+      <a th:href="@{/productservice/delete-a-product}">Delete a Product</a>
+    </nav>
+    <hr>
+    <div>
+      <a th:href="@{/productservice/index}" style="color: white"> Back to Home Page </a>
+    </div>
+  </div>
+  <!--  -->
+
+  <!-- Product List -->
+  <div class="product-list" style="display: flex; flex-direction: column; margin-left: 2rem">
+
+    <div>
+      <h1>Error</h1>
+      <p th:text="${errorMessage}" style="max-width: 15rem"></p>
+    </div>
+
+    <div>
+      <a th:href="@{/productservice/index}"> Back to Home Page </a>
+    </div>
+
+
+  </div>
+<!---->
+</div>
+
+
+</body>
+</html>

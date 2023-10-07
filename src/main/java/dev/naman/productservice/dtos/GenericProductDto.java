@@ -28,7 +28,7 @@ public class GenericProductDto {
     @Column(name = "id", columnDefinition = "binary(16)", nullable = false, updatable = false)
     private UUID uuid;
 
-    //    private Long id;    // for FakeStore API
+//        private Long id;    // for FakeStore API
     private String title;
     private String description;
     private String image;

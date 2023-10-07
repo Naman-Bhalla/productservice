@@ -1,4 +1,4 @@
-package com.js.productservice.inheritanceDemo.tablePerClass;
+package dev.naman.productservice.inheritancedemo.tablePerClass;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;

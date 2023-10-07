@@ -100,7 +100,6 @@ public class FakeStoreProductServiceClient {
         fakeStoreProductDto.setImage(productResponse.get().getImage());
         fakeStoreProductDto.setCategory(productResponse.get().getCategory());
 
-
         if (responseEntity.getStatusCode().is2xxSuccessful()) {
             System.out.println("Product deleted successfully");
             return fakeStoreProductDto;

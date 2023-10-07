@@ -1,5 +1,6 @@
-package com.js.productservice.inheritanceDemo.singleTable;
+package dev.naman.productservice.inheritancedemo.singleTable;
 
+import dev.naman.productservice.inheritancedemo.singleTable.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

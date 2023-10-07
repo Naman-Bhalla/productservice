@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Product List</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/CSS/styles.css}" />
+  <style>
+    /* Add your styling for the navigation bar here */
+    nav {
+      /*background-color: #333;*/
+      overflow: hidden;
+    }
+
+    nav a {
+      float: left;
+      display: block;
+      color: white;
+      text-align: center;
+      /*padding: 14px 16px;*/
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    /* Add a class to highlight the active link */
+    nav a.active {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .product-form-detail-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+        align-items: center;
+        margin-left: 1rem;
+        height: fit-content;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h3>Get Single Product</h3>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="sidebar-container">
+    <!-- Sidebar DB-->
+    <div class="sidebar" style="margin-bottom: 2rem">
+      <h3>DB 7 APIs</h3>
+      <nav>
+        <a th:href="@{/productservice/get-all-products}" >Get all Products</a>
+        <a th:href="@{/productservice/get-single-product}" class="active">Get a Product</a>
+        <a th:href="@{/productservice/get-all-categories}">Get all Categories</a>
+        <a th:href="@{/productservice/get-in-category}">Get in Category</a>
+        <a th:href="@{/productservice/create-a-product}">Create a Product</a>
+        <a th:href="@{/productservice/update-a-product}">Update a Product</a>
+        <a th:href="@{/productservice/delete-a-product}">Delete a Product</a>
+      </nav>
+      <hr>
+      <div>
+        <a th:href="@{/productservice/index}" style="color: white; text-decoration: none">Home Page </a>
+      </div>
+    </div>
+    <!--  -->
+    <!-- Sidebar FAKESTORE API-->
+<!--    <div class="sidebar">-->
+<!--      <h3>FakeStore 7 APIs</h3>-->
+<!--      <nav>-->
+<!--        <a th:href="@{/productservice/get-all-products}">Get all Products</a>-->
+<!--        <a th:href="@{/productservice/get-single-product}">Get a Product</a>-->
+<!--        <a th:href="@{/productservice/get-all-categories}">Get all Categories</a>-->
+<!--        <a th:href="@{/productservice/get-in-category}">Get in Category</a>-->
+<!--        <a th:href="@{/productservice/create-a-product}">Create a Product</a>-->
+<!--        <a th:href="@{/productservice/update-a-product}">Update a Product</a>-->
+<!--        <a th:href="@{/productservice/delete-a-product}">Delete a Product</a>-->
+<!--      </nav>-->
+<!--      <hr>-->
+<!--      <div>-->
+<!--        <a th:href="@{/productservice/index}" style="color: white"> Back to Home Page </a>-->
+<!--      </div>-->
+<!--    </div>-->
+    <!--  -->
+  </div>
+
+<!--  commented  -->
+
+  <div th:if="${error}" >
+    <span>${error}</span>
+  </div>
+
+  <div class="product-form-detail-container">
+      <!-- Form to input UUID -->
+      <form th:action="@{/productservice/get-single-product}" th:object="${genericDto}" method="POST">
+        <label for="uuidInput">Enter Product ID:</label>
+    <!--    <input type="text" id="uuidInput" th:field="*{  }" required>-->
+        <input type="text" id="uuidInput" th:field="*{uuid}" required style="width: 20rem">
+        <button type="submit">Fetch Product</button>
+      </form>
+    <!-- -->
+    <div style="border: 1px solid black; margin-top: 1rem; margin-bottom: 1rem; width: 40rem; margin-left: 1rem"></div>
+
+    <!-- Display product details -->
+        <div th:if="${genericDto}" style="margin-left: 2rem">
+          <div class="product-detail-image">
+            <img th:src="${genericDto.getImage()}" th:alt="${genericDto.getTitle()}">
+          </div>
+          <h4>
+            Id : <span th:text="${genericDto.getUuid()}"></span>
+          </h4>
+          <h3>
+            Title : <span th:text="${genericDto.getTitle()}"></span>
+          </h3>
+          <h4>
+            Currency : <span th:text="${genericDto.getCurrency()}"></span>
+          </h4>
+          <h4>
+            Price : <span th:if="${genericDto.getPrice() != null and genericDto.getPrice() != 0}" th:text="${genericDto.getPrice()}"></span>
+          </h4>
+
+          <h4>
+            Category : <span th:text="${genericDto.getCategory()}"></span>
+          </h4>
+          <h5>
+            Description : <span th:text="${genericDto.getDescription()}"></span>
+          </h5>
+        </div>
+    <!--  -->
+
+  </div>
+  <!--  -->
+
+
+</div>
+<!---->
+
+
+
+
+</body>
+</html>

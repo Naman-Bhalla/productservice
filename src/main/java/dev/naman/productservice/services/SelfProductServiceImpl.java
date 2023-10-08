@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 
-@Primary
+//@Primary
 @Service("selfProductServiceImpl")
 public class SelfProductServiceImpl implements ProductService {
     private ProductRepository productRepository;

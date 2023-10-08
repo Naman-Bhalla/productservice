@@ -4,6 +4,7 @@ import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.exceptions.NotFoundException;
 import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductDto;
 import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoryProductServiceClient;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
@@ -13,10 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Repository("fakeStoreProductService")
+@Primary
+@Service("fakeStoreProductService")
 public class FakeStoreProductService implements ProductService {
 
     private FakeStoryProductServiceClient fakeStoryProductServiceClient;
+
+
+    @Autowired
+    public FakeStoreProductService(FakeStoryProductServiceClient fakeStoryProductServiceClient) {
+        this.fakeStoryProductServiceClient = fakeStoryProductServiceClient;
+    }
 
     private GenericProductDto convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto) {
 
@@ -31,9 +39,9 @@ public class FakeStoreProductService implements ProductService {
         return product;
     }
 
-    public FakeStoreProductService(FakeStoryProductServiceClient fakeStoryProductServiceClient) {
-        this.fakeStoryProductServiceClient = fakeStoryProductServiceClient;
-    }
+//    public FakeStoreProductService(FakeStoryProductServiceClient fakeStoryProductServiceClient) {
+//        this.fakeStoryProductServiceClient = fakeStoryProductServiceClient;
+//    }
 
 
     @Override

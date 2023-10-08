@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
+@Entity (name = "price")
 @Getter
 @Setter
 @AllArgsConstructor

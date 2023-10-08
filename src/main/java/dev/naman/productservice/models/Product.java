@@ -52,6 +52,7 @@ public class Product extends BaseModel {
     public String getCurrency() {
         return this.price.getCurrency();
     }
+
 //    private String title;
 //
 //    private String description;

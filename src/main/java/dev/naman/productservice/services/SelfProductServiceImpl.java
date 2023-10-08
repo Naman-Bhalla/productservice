@@ -61,7 +61,7 @@ public class SelfProductServiceImpl implements ProductService {
         return "DB Product Service";
     }
 
-    //    @Override
+    @Override
     public GenericProductDto createProduct(GenericProductDto genericProductDto) {
 
         // This should be the JSON format for the request body

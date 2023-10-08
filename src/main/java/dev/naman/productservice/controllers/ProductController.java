@@ -1,100 +1,117 @@
 package dev.naman.productservice.controllers;
 
-import dev.naman.productservice.dtos.ExceptionDto;
-import dev.naman.productservice.dtos.GenericProductDto;
-import dev.naman.productservice.exceptions.NotFoundException;
-import dev.naman.productservice.services.ProductService;
-import org.springframework.beans.factory.annotation.Qualifier;
+import dev.naman.productservice.dtos.*;
+import dev.naman.productservice.services.SelfStoreProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-//    @Autowired
-    // field injection
-    private ProductService productService;
-    // ....;
-    // ...;
+    private final SelfStoreProductService selfStoreProductService;
 
-
-
-    // constructor injection
-//    @Autowired
-    public ProductController(ProductService productService) {
-        this.productService = productService;
+    public ProductController(SelfStoreProductService selfStoreProductService) {
+        this.selfStoreProductService = selfStoreProductService;
     }
-//
 
-    // setter injection
-//    @Autowired
-//    public void setProductService(ProductService productService) {
-//        this.productService = productService;
-//    }
+    @PostMapping("/create")
+    public CreateProductResponseDto createProduct(@RequestBody CreateProductRequestDto product) {
+        return selfStoreProductService.createProduct(product);
+    }
 
-    // GET /products {}
-    @GetMapping
-    public ResponseEntity<List<GenericProductDto>> getAllProducts() {
-        List<GenericProductDto> productDtos = productService.getAllProducts();
-        if (productDtos.isEmpty()) {
+    @GetMapping("{id}")
+    public ResponseEntity<GetProductResponseDto> getProductById(@PathVariable("id") Long id) {
+        GetProductResponseDto response = selfStoreProductService.getProductById(id);
+        if (response == null) {
             return new ResponseEntity<>(
-                    productDtos,
                     HttpStatus.NOT_FOUND
             );
         }
-
-        List<GenericProductDto> genericProductDtos = new ArrayList<>();
-
-        for (GenericProductDto gpd: productDtos) {
-            genericProductDtos.add(gpd);
-        };
-
-//        genericProductDtos.remove(genericProductDtos.get(0));
-
-        return new ResponseEntity<>(genericProductDtos, HttpStatus.OK);
-
-//        productDtos.get(0).setId(1001L);
-//
-//        return new ResponseEntity<>(productDtos, HttpStatus.OK);
-    }
-
-    // localhost:8080/products/{id}
-    // localhost:8080/products/123
-    @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
-        GenericProductDto productDto = productService.getProductById(id);
-        if (productDto == null) {
-            throw new NotFoundException("Product Doesn't Exist");
-        }
-
-//        GenericProductDto genericProductDto = new GenericProductDto();
-//        genericProductDto.setTitle(productDto.getTitle());
-        return productDto;
-
-//        Comparator
-    }
-
-    @DeleteMapping("{id}")
-    public ResponseEntity<GenericProductDto> deleteProductById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(
-                productService.deleteProduct(id),
+                response,
                 HttpStatus.OK
         );
     }
 
-    @PostMapping
-    public GenericProductDto createProduct(@RequestBody GenericProductDto product) {
-//        System.out.println(product.name);
-        return productService.createProduct(product);
+    @GetMapping("/all")
+    public ResponseEntity<GetAllProductResponseDto> getAllProducts() {
+        GetAllProductResponseDto response = selfStoreProductService.getAllProducts();
+        if (response.getAllProductResponseDto().isEmpty()) {
+            return new ResponseEntity<>(
+                    response,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.OK
+        );
+
     }
 
     @PutMapping("{id}")
-    public void updateProductById() {
+    public ResponseEntity<GetProductResponseDto> updateProductById(@RequestBody CreateProductRequestDto product, @PathVariable("id") Long id) {
+        GetProductResponseDto response = selfStoreProductService.updateProductById(product, id);
+
+        if (response == null) {
+            return new ResponseEntity<>(
+                    response,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.OK
+        );
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<DeleteProductResponseDto> deleteProductById(@PathVariable("id") Long id) {
+        DeleteProductResponseDto response = selfStoreProductService.deleteProductById(id);
+        if (response == null) {
+            return new ResponseEntity<>(
+                    response,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.OK
+        );
+
 
     }
+
+    @GetMapping("/category/{categoryType}")
+    public ResponseEntity<GetAllProductResponseDto> getCategoryById(@PathVariable("categoryType") String category) {
+        GetAllProductResponseDto response = selfStoreProductService.getProductsByCategory(category);
+        if (response == null) {
+            return new ResponseEntity<>(
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/categories")
+    public ResponseEntity<List<CategoryTypeDto>> getAllCategories() {
+        List<CategoryTypeDto> response = selfStoreProductService.getAllCategories();
+
+        if (response.isEmpty()) {
+            return new ResponseEntity<>(
+                    response,
+                    HttpStatus.NOT_FOUND
+            );
+        }
+        return new ResponseEntity<>(
+                response,
+                HttpStatus.OK
+        );
+    }
+
 }

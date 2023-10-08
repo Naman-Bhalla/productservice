@@ -7,6 +7,6 @@ import java.util.List;
 
 @Getter
 @Setter
-public class GetProductTitlesRequestDto {
-    private List<String> uuids;
+public class GetAllProductResponseDto {
+    List<GetProductResponseDto> allProductResponseDto;
 }

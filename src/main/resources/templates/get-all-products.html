@@ -63,35 +63,35 @@
   </div>
 
   <div class="container-flex-products">
-    <!-- Display products -->
-    <div th:each="product : ${products}" class="product-card" >
-      <div class="product-image">
-        <img th:src="${product.image}" th:text="${product.getTitle()}">
-      </div>
-      <div class="product-details">
-        <div class="product-title">
-          <span th:text="${product.getTitle()}">Product Title</span>
-        </div>
-<!--        <div class="product-price">-->
-<!--          <span th:text="${product.getCurrency()}" class="curr-span">Currency</span>-->
-<!--          <span th:text="${product.getPrice()}" class="price-span">Price</span>-->
-<!--        </div>-->
-        <div class="product-price">
-          <span th:text="${product.getCurrency()}" class="curr-span"></span>
-          <span th:text="${product.getPrice()}" class="price-span"></span>
-        </div>
-        <div class="product-category" >
-          <span th:text="${product.getCategory()}"></span>
-        </div>
-        <hr>
-        <div class="product-id">
-          <span th:text="${product.getUuid()}">Product Id</span>
-        </div>
-      </div>
-    </div>
 
-</div>
-</div>
-<!---->
+    <!-- Display products -->
+      <div th:each="product : ${products}" class="product-card" >
+        <div class="product-image">
+          <img th:src="${product.image}" th:text="${product.getTitle()}">
+        </div>
+        <div class="product-details">
+          <div class="product-title">
+            <span th:text="${product.getTitle()}">Product Title</span>
+          </div>
+          <div class="product-price">
+            <span th:text="${product.getCurrency()}" class="curr-span"></span>
+            <span th:text="${product.getPrice()}" class="price-span"></span>
+          </div>
+          <div class="product-category" >
+            <span th:text="${product.getCategory()}"></span>
+          </div>
+          <hr>
+          <div class="product-id">
+            <span th:text="${product.getUuid()}">Product Id</span>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  </div>
+  <!---->
+
+
 </body>
 </html>

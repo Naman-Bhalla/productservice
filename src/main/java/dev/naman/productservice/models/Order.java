@@ -13,7 +13,7 @@ public class Order extends BaseModel {
 
     @ManyToMany
     @JoinTable(
-            name = "order_product",
+            name = "product_orders",
             joinColumns = @JoinColumn(name = "order_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id")
     )   // this means that the category field in the Product class is the owner of the relationship

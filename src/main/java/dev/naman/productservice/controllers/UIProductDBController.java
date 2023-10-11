@@ -38,6 +38,9 @@ public class UIProductDBController {
     public String listProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
         model.addAttribute("productCount", productService.getAllProducts().size());
+        if (productService.getAllProducts().isEmpty()) {
+            model.addAttribute("message", "No products found");
+        }
         return "get-all-products";
     }
 

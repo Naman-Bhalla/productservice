@@ -7,20 +7,49 @@ import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
-@Entity
+@Entity (name = "category")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class Category extends BaseModel {
-    @Column
     private String name;
 
-    @OneToMany(mappedBy = "category")
-    @Fetch(FetchMode.SELECT)
-    private List<Product> products = new ArrayList<>();
+//    @OneToMany
+//    private List<Product> products;
 
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+    // this means that the category field in the Product class is the owner of the relationship
+    @OneToMany(mappedBy = "category")
+    @Fetch(FetchMode.SUBSELECT)
+    private List<Product> products;
+
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
+    public UUID getUuid() {
+        return this.uuid;
+    }
     // this is the same relation being mapped by category attribute in the other (Product) class
 }
 // class Group {

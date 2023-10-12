@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Product List</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/CSS/styles.css}" />
+    <style>
+        /* Add your styling for the navigation bar here */
+        nav {
+            /*background-color: #333;*/
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            /*padding: 14px 16px;*/
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Add a class to highlight the active link */
+        nav a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .product-form-update-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-left: 1rem;
+            height: fit-content;
+        }
+        input {
+            margin-bottom: 1rem;
+            border-radius: 0;
+            display: inline;
+        }
+        .form-and-image-update {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-left: 3rem;
+        }
+        .img-container {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            border-bottom: 1px solid #c4c1c1;
+        }
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+
+<!---->
+<div class="container">
+  <div class="header">
+    <h3>Update a Product</h3>
+  </div>
+</div>
+
+<div class="container">
+
+    <div class="sidebar-container">
+        <!-- Sidebar DB-->
+        <div class="sidebar" style="margin-bottom: 2rem">
+            <h3>DB 7 APIs</h3>
+            <nav>
+                <a th:href="@{/productservice/get-all-products}" >Get all Products</a>
+                <a th:href="@{/productservice/get-single-product}" >Get a Product</a>
+                <a th:href="@{/productservice/get-all-categories}">Get all Categories</a>
+                <a th:href="@{/productservice/get-in-category}">Get in Category</a>
+                <a th:href="@{/productservice/create-a-product}">Create a Product</a>
+                <a th:href="@{/productservice/update-a-product}" class="active">Update a Product</a>
+                <a th:href="@{/productservice/delete-a-product}">Delete a Product</a>
+            </nav>
+            <hr>
+            <div>
+                <a th:href="@{/productservice/index}" style="color: white; text-decoration: none">Home Page </a>
+            </div>
+        </div>
+        <!--  -->
+        <!-- Sidebar FAKESTORE API-->
+<!--        <div class="sidebar">-->
+<!--            <h3>FakeStore 7 APIs</h3>-->
+<!--            <nav>-->
+<!--                <a th:href="@{/productservice/get-all-products}">Get all Products</a>-->
+<!--                <a th:href="@{/productservice/get-single-product}">Get a Product</a>-->
+<!--                <a th:href="@{/productservice/get-all-categories}">Get all Categories</a>-->
+<!--                <a th:href="@{/productservice/get-in-category}">Get in Category</a>-->
+<!--                <a th:href="@{/productservice/create-a-product}">Create a Product</a>-->
+<!--                <a th:href="@{/productservice/update-a-product}">Update a Product</a>-->
+<!--                <a th:href="@{/productservice/delete-a-product}">Delete a Product</a>-->
+<!--            </nav>-->
+<!--            <hr>-->
+<!--            <div>-->
+<!--                <a th:href="@{/productservice/index}" style="color: white"> Back to Home Page </a>-->
+<!--            </div>-->
+<!--        </div>-->
+        <!--  -->
+    </div>
+
+  <!-- RIGHT BOX Update Product -->
+
+    <div class="product-form-update-container">
+        <div style="border: 1px solid black; margin-top: 1rem; margin-bottom: 1rem; width: 40rem; margin-left: 1rem"></div>
+        <!-- Form to input UUID -->
+        <form th:action="@{/productservice/update-a-product}" th:object="${genericProductDto}" method="POST">
+            <label for="uuidInput">Enter Product ID:</label>
+            <!--    <input type="text" id="uuidInput" th:field="*{  }" required>-->
+            <input type="text" id="uuidInput" th:field="*{uuid}" required style="width: 20rem">
+            <button type="submit">Fetch Product</button>
+        </form>
+        <!-- -->
+        <div style="border: 1px solid black; margin-top: 1rem; margin-bottom: 1rem; width: 40rem; margin-left: 1rem"></div>
+
+        <!-- Display product details -->
+            <div class="form-and-image-update">
+                <div>
+                    <form th:action="@{/productservice/update-product}" th:object="${genericProductDto}" method="POST" onsubmit="return confirmSubmission()">
+                        <!-- ID -->
+                        <div class="form-group">
+                            <label for="inputID">Id :</label>
+                            <span>
+                                <input type="text" id="displayID" name="displayID" th:value="${genericProductDto.getUuid()}" disabled style="width: 20rem; margin-bottom: 0">
+                                <p style="margin-top: 0">(disabled)</p>
+                            </span>
+<!--                            <span><input type="text" id="inputID" name="inputID" th:field="*{uuid}" required style="width: 20rem"> (disabled)</span>-->
+                        </div>
+                            <input type="hidden" id="inputID" name="inputID" th:field="*{uuid}">
+                        <!-- Title -->
+                        <div class="form-group">
+                            <label for="title">Title :</label>
+                            <input type="text" id="title" name="title" th:field="*{title}" required  style="width: 20rem">
+                        </div>
+
+                        <!-- Currency -->
+                        <div class="form-group">
+                            <label for="currency">Currency :</label>
+                            <input id="currency" name="currency" th:field="*{currency}" required style="width: 20rem">
+                        </div>
+
+                        <!-- Price -->
+                        <div class="form-group">
+                            <label for="price">Price:</label>
+                            <input id="price" name="price" th:field="*{price}" required style="width: 20rem">
+                        </div>
+
+                        <!-- Category -->
+                        <div class="form-group">
+                            <label for="category">Category :</label>
+                            <input id="category" name="category" th:field="*{category}" required style="width: 20rem">
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="description">Category :</label>
+                            <textarea id="description" name="description" rows="5" th:field="*{description}" required style="width: 20rem" > </textarea>
+                        </div>
+
+                        <!-- Image Link -->
+                        <div class="form-group">
+                            <label for="imageLink">Image Link :</label>
+                            <input id="imageLink" name="imageLink" th:field="*{image}" style="width: 20rem">
+                        </div>
+<!--                            https://fakestoreapi.com/img/71HblAHs5xL._AC_UY879_-2.jpg               -->
+                        <!-- Submit Button -->
+                        <div class="form-group">
+                            <button type="submit" >Update Product</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="img-container">
+                    <img th:src="${genericProductDto.getImage()}" th:alt="${genericProductDto.getTitle()}">
+                </div>
+            </div>
+
+    </div>
+        <!---->
+
+</div>
+
+<script>
+    function confirmSubmission(title) {
+        return confirm("Are you sure you want to UPDATE ?");
+    }
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package dev.naman.productservice.inheritancedemo.singletable;
+package dev.naman.productservice.inheritancedemo.singleTable;
 
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;

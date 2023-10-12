@@ -1,6 +1,9 @@
-package dev.naman.productservice.inheritancedemo.tableperclass;
+package dev.naman.productservice.inheritancedemo.tablePerClass;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

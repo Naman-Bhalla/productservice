@@ -3,20 +3,23 @@
 //import dev.naman.productservice.dtos.GenericProductDto;
 //import dev.naman.productservice.exceptions.NotFoundException;
 //import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductDto;
-//import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoryProductServiceClient;
-//import org.springframework.context.annotation.Primary;
-//import org.springframework.stereotype.Component;
+//import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoreProductServiceClient;
 //import org.springframework.stereotype.Repository;
-//import org.springframework.stereotype.Service;
 //
 //import java.util.ArrayList;
 //import java.util.List;
+//import java.util.UUID;
 //
 //
-//@Repository("fakeStoreProductService")
-//public class FakeStoreProductService implements ProductService {
+//@Repository("fakeStoreProductServiceImpl")
+//public class FakeStoreProductServiceImpl implements ProductService {
 //
-//    private FakeStoryProductServiceClient fakeStoryProductServiceClient;
+//    private FakeStoreProductServiceClient fakeStoreProductServiceClient;
+//
+//    @Override
+//    public String getQualifierValue() {
+//        return "fakeStoreProductServiceImpl";
+//    }
 //
 //    private GenericProductDto convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto) {
 //
@@ -31,27 +34,32 @@
 //        return product;
 //    }
 //
-//    public FakeStoreProductService(FakeStoryProductServiceClient fakeStoryProductServiceClient) {
-//        this.fakeStoryProductServiceClient = fakeStoryProductServiceClient;
+//    public FakeStoreProductServiceImpl(FakeStoreProductServiceClient fakeStoreProductServiceClient) {
+//        this.fakeStoreProductServiceClient = fakeStoreProductServiceClient;
 //    }
 //
 //
 //    @Override
 //    public GenericProductDto createProduct(GenericProductDto product) {
-//        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.createProduct(product));
+//        return convertFakeStoreProductIntoGenericProduct(fakeStoreProductServiceClient.createProduct(product));
 //    }
 //
 //    @Override
 //    public GenericProductDto getProductById(Long id) throws NotFoundException {
-//        System.out.println("In product service");
-//        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.getProductById(id));
+//
+//        return convertFakeStoreProductIntoGenericProduct(fakeStoreProductServiceClient.getProductById(id));
+//    }
+//
+//    @Override
+//    public GenericProductDto updateProduct(Long id, FakeStoreProductDto fakeStoreProductDto) throws NotFoundException {
+//        return new GenericProductDto();
 //    }
 //
 //    @Override
 //    public List<GenericProductDto> getAllProducts() {
 //        List<GenericProductDto> genericProductDtos = new ArrayList<>();
 //
-//        for (FakeStoreProductDto fakeStoreProductDto: fakeStoryProductServiceClient.getAllProducts()) {
+//        for (FakeStoreProductDto fakeStoreProductDto: fakeStoreProductServiceClient.getAllProducts()) {
 //            genericProductDtos.add(convertFakeStoreProductIntoGenericProduct(fakeStoreProductDto));
 //        }
 //        return genericProductDtos;
@@ -59,6 +67,6 @@
 //
 //    @Override
 //    public GenericProductDto deleteProduct(Long id) {
-//        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.deleteProduct(id));
+//        return convertFakeStoreProductIntoGenericProduct(fakeStoreProductServiceClient.deleteProduct(id));
 //    }
 //}

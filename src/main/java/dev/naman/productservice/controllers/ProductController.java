@@ -8,6 +8,7 @@ import dev.naman.productservice.security.JwtObject;
 import dev.naman.productservice.security.TokenValidator;
 import dev.naman.productservice.services.ProductService;
 import jakarta.annotation.Nullable;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -74,7 +75,12 @@ public class ProductController {
     // localhost:8080/products/{id}
     // localhost:8080/products/123
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@Nullable @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken, @PathVariable("id") Long id) throws NotFoundException {
+    public GenericProductDto getProductById(@Nullable @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken, @PathVariable("id") Long id
+    , HttpServletRequest request) throws NotFoundException {
+
+//        request.getRemoteAddr()
+
+//        request.ge
         System.out.println(authToken);
         Optional<JwtObject> authTokenObjOptional;
         JwtObject authTokenObj = null;

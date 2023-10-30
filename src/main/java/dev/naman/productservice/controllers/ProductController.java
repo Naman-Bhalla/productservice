@@ -2,9 +2,15 @@ package dev.naman.productservice.controllers;
 
 import dev.naman.productservice.dtos.ExceptionDto;
 import dev.naman.productservice.dtos.GenericProductDto;
+import dev.naman.productservice.dtos.Request;
 import dev.naman.productservice.exceptions.NotFoundException;
+import dev.naman.productservice.security.JwtObject;
+import dev.naman.productservice.security.TokenValidator;
 import dev.naman.productservice.services.ProductService;
+import jakarta.annotation.Nullable;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -19,6 +26,7 @@ public class ProductController {
 //    @Autowired
     // field injection
     private ProductService productService;
+    private TokenValidator tokenValidator;
     // ....;
     // ...;
 
@@ -26,8 +34,9 @@ public class ProductController {
 
     // constructor injection
 //    @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, TokenValidator tokenValidator) {
         this.productService = productService;
+        this.tokenValidator = tokenValidator;
     }
 //
 
@@ -66,7 +75,25 @@ public class ProductController {
     // localhost:8080/products/{id}
     // localhost:8080/products/123
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@PathVariable("id") Long id) throws NotFoundException {
+    public GenericProductDto getProductById(@PathVariable("id") Long id
+    , HttpServletRequest request) throws NotFoundException {
+
+//        request.getRemoteAddr()
+
+//        request.ge
+//        System.out.println(authToken);
+//        Optional<JwtObject> authTokenObjOptional;
+//        JwtObject authTokenObj = null;
+//
+//        if (authToken != null) {
+//            authTokenObjOptional = tokenValidator.validateToken(authToken);
+//            if (authTokenObjOptional.isEmpty()) {
+//                // ignore
+//            }
+//
+//            authTokenObj = authTokenObjOptional.get();
+//        }
+
         GenericProductDto productDto = productService.getProductById(id);
         if (productDto == null) {
             throw new NotFoundException("Product Doesn't Exist");

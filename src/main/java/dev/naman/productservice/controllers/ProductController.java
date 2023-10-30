@@ -75,26 +75,26 @@ public class ProductController {
     // localhost:8080/products/{id}
     // localhost:8080/products/123
     @GetMapping("{id}")
-    public GenericProductDto getProductById(@Nullable @RequestHeader(HttpHeaders.AUTHORIZATION) String authToken, @PathVariable("id") Long id
+    public GenericProductDto getProductById(@PathVariable("id") Long id
     , HttpServletRequest request) throws NotFoundException {
 
 //        request.getRemoteAddr()
 
 //        request.ge
-        System.out.println(authToken);
-        Optional<JwtObject> authTokenObjOptional;
-        JwtObject authTokenObj = null;
+//        System.out.println(authToken);
+//        Optional<JwtObject> authTokenObjOptional;
+//        JwtObject authTokenObj = null;
+//
+//        if (authToken != null) {
+//            authTokenObjOptional = tokenValidator.validateToken(authToken);
+//            if (authTokenObjOptional.isEmpty()) {
+//                // ignore
+//            }
+//
+//            authTokenObj = authTokenObjOptional.get();
+//        }
 
-        if (authToken != null) {
-            authTokenObjOptional = tokenValidator.validateToken(authToken);
-            if (authTokenObjOptional.isEmpty()) {
-                // ignore
-            }
-
-            authTokenObj = authTokenObjOptional.get();
-        }
-
-        GenericProductDto productDto = productService.getProductById(id, authTokenObj.getUserId());
+        GenericProductDto productDto = productService.getProductById(id);
         if (productDto == null) {
             throw new NotFoundException("Product Doesn't Exist");
         }

@@ -20,7 +20,7 @@ public class SelfProductServiceImpl implements ProductService {
     }
 
     @Override
-    public GenericProductDto getProductById(Long id, Long userIdTryingToAccess) {
+    public GenericProductDto getProductById(Long id) {
         System.out.println("In product service");
 
         // Product product = ProductRepository.getProductByID(id);

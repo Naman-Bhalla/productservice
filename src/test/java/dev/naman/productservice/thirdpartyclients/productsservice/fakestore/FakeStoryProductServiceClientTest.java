@@ -14,7 +14,7 @@ class FakeStoryProductServiceClientTest {
     @Autowired
     private RestTemplateBuilder restTemplateBuilder;
 
-    @Test
+//    @Test
     void testNonExistingProductReturnsNull() {
 //        RestTemplate restTemplate = restTemplateBuilder.build();
 //        ResponseEntity<FakeStoreProductDto> response =

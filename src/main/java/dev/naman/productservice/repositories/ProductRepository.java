@@ -3,6 +3,8 @@ package dev.naman.productservice.repositories;
 import dev.naman.productservice.models.Category;
 import dev.naman.productservice.models.Product;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.FluentQuery;
@@ -16,11 +18,16 @@ import java.util.function.Function;
 public interface ProductRepository
 extends JpaRepository<Product, UUID> {
 
+
+//    List<Product> findAll(Pageable pageable);
+
+//    List<Product> getAll();
+
     Product findByTitleEquals(String title);
 
     Product findByTitleEqualsAndPrice_PriceOrderByPrice_price(String title, double price);
 
-    List<Product> findAllByPrice_Currency(String currency);
+    List<Product> findAllByPrice_Currency(String currency, Pageable pageable);
 
     @Override
     void delete(Product entity);
@@ -44,4 +51,6 @@ extends JpaRepository<Product, UUID> {
 
 //    @Query("select Product from Product where Product.price.currency = :currency and Product.title = :naman")
 //    List<Product> doSomething(String naman, String currency);
+
+    Page<Product> findAllByTitleContaining(String title, Pageable pageable);
 }

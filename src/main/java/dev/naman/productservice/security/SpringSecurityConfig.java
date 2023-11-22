@@ -25,6 +25,8 @@ public class SpringSecurityConfig {
                             jwtConfigurer.jwtAuthenticationConverter(new CustomJwtAuthenticationConverter());
                         }
                 ))
+                .cors().disable()
+                .csrf().disable()
                 // Form login handles the redirect to the login page from the
                 // authorization server filter chain
         ;

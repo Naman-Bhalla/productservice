@@ -5,12 +5,14 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(indexName = "productservice")
 public class Product extends BaseModel {
 
     private String title;
@@ -32,3 +34,7 @@ public class Product extends BaseModel {
     private int inventoryCount;
 //    private double price;
 }
+
+// select * from products where title startsBy "hello"
+// a datastore optimized for search queries
+// -> elasticsearch

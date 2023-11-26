@@ -1,5 +1,6 @@
 package dev.bhanu.productservice.controllers;
 
+import dev.bhanu.productservice.dtos.SearchElasticDTO;
 import dev.bhanu.productservice.dtos.SearchRequestDTO;
 import dev.bhanu.productservice.dtos.SelfGenericProductDto;
 import dev.bhanu.productservice.services.SearchService;
@@ -23,4 +24,12 @@ public class SearchController {
     public Page<SelfGenericProductDto> searchProducts(@RequestBody SearchRequestDTO searchRequestDTO){
         return searchService.searchProducts(searchRequestDTO);
     }
+
+    @PostMapping("/elastic")
+    @ResponseStatus(HttpStatus.OK)
+    public Page<SelfGenericProductDto> searchProductsByElastic(@RequestBody SearchElasticDTO searchRequestDTO){
+        return searchService.SearchProductsByElastic(searchRequestDTO);
+    }
+
+
 }

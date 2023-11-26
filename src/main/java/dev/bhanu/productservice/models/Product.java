@@ -24,4 +24,6 @@ public class Product extends BaseModel{
 
     private String description;
     private String image;
+
+    private int inventory;
 }

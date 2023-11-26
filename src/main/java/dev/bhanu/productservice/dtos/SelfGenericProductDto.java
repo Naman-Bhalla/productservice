@@ -18,5 +18,6 @@ public class SelfGenericProductDto {
     String description;
     String image;
     String price;
+    int inventory;
     String category;
 }

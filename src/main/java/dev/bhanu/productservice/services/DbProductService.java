@@ -126,6 +126,8 @@ public class DbProductService implements SelfProductService {
         productRepository.delete(optionalProduct.get());
     }
 
+    private
+
 
     ProductDto convertToDBProductDTO(Product product1){
         ProductDto productDto = new ProductDto();

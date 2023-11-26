@@ -20,13 +20,11 @@ public class SpringSecurityConfig {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/dbproducts").hasAuthority("ROLE_admin")
+//                        .requestMatchers("/dbproducts").hasAuthority("ROLE_admin")
                         .anyRequest().permitAll()
                 ).oauth2ResourceServer((oauth2) -> oauth2
                                 .jwt(jwt -> jwt
                                         .jwtAuthenticationConverter(jwtAuthenticationConverter())));
-                // Form login handles the redirect to the login page from the
-                // authorization server filter chain
 
         return http.build();
     }

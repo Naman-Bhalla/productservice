@@ -1,5 +1,6 @@
 package dev.bhanu.productservice.services;
 
+import dev.bhanu.productservice.ElasticSearchRepository.ProductElasticSearchRepository;
 import dev.bhanu.productservice.Exception.NotFoundException;
 import dev.bhanu.productservice.Repository.CategoryRepository;
 import dev.bhanu.productservice.Repository.ProductRepository;
@@ -22,12 +23,16 @@ public class DbProductService implements SelfProductService {
     private ProductRepository productRepository;
     private CategoryRepository categoryRepository;
 
+    private ProductElasticSearchRepository productElasticSearchRepository;
+
     @Autowired
-    DbProductService(ProductRepository productRepository, CategoryRepository categoryRepository){
+    DbProductService(ProductRepository productRepository, CategoryRepository categoryRepository, ProductElasticSearchRepository productElasticSearchRepository){
         this.productRepository = productRepository;
         this.categoryRepository = categoryRepository;
+        this.productElasticSearchRepository = productElasticSearchRepository;
     }
     @Override
+    @Transactional
     public ProductDto createProduct(SelfGenericProductDto product) {
         Product product1 = new Product();
 
@@ -51,6 +56,7 @@ public class DbProductService implements SelfProductService {
 
 
         Product savedProduct = productRepository.save(product1);
+        productElasticSearchRepository.save(savedProduct);
         return convertToDBProductDTO(savedProduct);
     }
 

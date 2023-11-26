@@ -10,6 +10,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Fetch;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.elasticsearch.annotations.Document;
+import org.springframework.data.elasticsearch.annotations.Field;
+import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.List;
 
@@ -18,11 +22,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Document(indexName = "products")
 public class Category extends BaseModel{
     @Column
     private String name;
 
     @Nullable
     @OneToMany(mappedBy = "category", fetch = FetchType.LAZY)
+    @Transient
     private List<Product> products;
 }

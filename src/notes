@@ -1,0 +1,26 @@
+When a [product is save,d it should be saved in ES as well
+When someone searches for product, you return all products where either the title contains that string or description contains that string via ElasticSearch
+
+
+ Elasticsearch security features have been automatically configured!
+✅ Authentication is enabled and cluster connections are encrypted.
+
+ℹ️  Password for the elastic user (reset with `bin/elasticsearch-reset-password -u elastic`):
+  zPhDRyIWG80lLFRKC3yY
+
+ℹ️  HTTP CA certificate SHA-256 fingerprint:
+  bdb3d325a9ef9d97bff32ca725191821702cd1a46ca6e2cbdfbc85e8f0464995
+
+ℹ️  Configure Kibana to use this cluster:
+• Run Kibana and click the configuration link in the terminal when Kibana starts.
+• Copy the following enrollment token and paste it into Kibana in your browser (valid for the next 30 minutes):
+  eyJ2ZXIiOiI4LjExLjEiLCJhZHIiOlsiMTcyLjE4LjAuMjo5MjAwIl0sImZnciI6ImJkYjNkMzI1YTllZjlkOTdiZmYzMmNhNzI1MTkxODIxNzAyY2QxYTQ2Y2E2ZTJjYmRmYmM4NWU4ZjA0NjQ5OTUiLCJrZXkiOiJzaWlPQzR3QnBNYmVZM3d5cEtNYTppN0s5djBUalQxU1ZTcUtwcTdhTFBRIn0=
+
+ℹ️ Configure other nodes to join this cluster:
+• Copy the following enrollment token and start new Elasticsearch nodes with `bin/elasticsearch --enrollment-token <token>` (valid for the next 30 minutes):
+  eyJ2ZXIiOiI4LjExLjEiLCJhZHIiOlsiMTcyLjE4LjAuMjo5MjAwIl0sImZnciI6ImJkYjNkMzI1YTllZjlkOTdiZmYzMmNhNzI1MTkxODIxNzAyY2QxYTQ2Y2E2ZTJjYmRmYmM4NWU4ZjA0NjQ5OTUiLCJrZXkiOiJ0Q2lPQzR3QnBNYmVZM3d5cEtOSToxZkFzY2dPdFM1S09TeG5hVVFmNHlRIn0=
+
+  If you're running in Docker, copy the enrollment token and run:
+  `docker run -e "ENROLLMENT_TOKEN=<token>" docker.elastic.co/elasticsearch/elasticsearch:8.11.1`
+
+

@@ -2,15 +2,7 @@ package dev.naman.productservice.services;
 
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.models.Product;
-import dev.naman.productservice.repositories.ProductElasticSearchRepository;
 import dev.naman.productservice.repositories.ProductRepository;
-import dev.naman.productservice.security.JwtObject;
-import org.springframework.context.annotation.Primary;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,12 +13,11 @@ import java.util.List;
 @Service("selfProductServiceImpl")
 public class SelfProductServiceImpl implements ProductService {
     private ProductRepository productRepository;
-    private ProductElasticSearchRepository productElasticSearchRepository;
+//    private ProductElasticSearchRepository productElasticSearchRepository;
 
-    public SelfProductServiceImpl(ProductRepository productRepository,
-                                  ProductElasticSearchRepository productElasticSearchRepository) {
+    public SelfProductServiceImpl(ProductRepository productRepository) {
         this.productRepository = productRepository;
-        this.productElasticSearchRepository = productElasticSearchRepository;
+//        this.productElasticSearchRepository = productElasticSearchRepository;
     }
 
     @Override
@@ -52,7 +43,7 @@ public class SelfProductServiceImpl implements ProductService {
         product1.setTitle(product.getTitle());
 
         Product savedProduct = productRepository.save(product1);
-        productElasticSearchRepository.save(savedProduct);
+//        productElasticSearchRepository.save(savedProduct);
 
         return null;
     }

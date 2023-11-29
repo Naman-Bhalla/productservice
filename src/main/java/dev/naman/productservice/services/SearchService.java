@@ -3,7 +3,6 @@ package dev.naman.productservice.services;
 import dev.naman.productservice.dtos.GenericProductDto;
 import dev.naman.productservice.dtos.SortParameter;
 import dev.naman.productservice.models.Product;
-import dev.naman.productservice.repositories.ProductElasticSearchRepository;
 import dev.naman.productservice.repositories.ProductRepository;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -14,9 +13,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class SearchService {
-//    private ProductRepository productRepository;
+    private ProductRepository productRepository;
 
-    private ProductElasticSearchRepository elasticSearchRepository;
+//    private ProductElasticSearchRepository elasticSearchRepository;
 
     public SearchService(ProductRepository productRepository) {
         this.productRepository = productRepository;

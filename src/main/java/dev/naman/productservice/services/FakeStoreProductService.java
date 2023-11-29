@@ -7,6 +7,7 @@ import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.Fake
 import dev.naman.productservice.thirdpartyclients.productsservice.fakestore.FakeStoryProductServiceClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,16 @@ import java.util.List;
 public class FakeStoreProductService implements ProductService {
 
     private FakeStoryProductServiceClient fakeStoryProductServiceClient;
+    private RedisTemplate<String, Object> redisTemplate;
+    // String -> Data Type of Key
+    // Object -> Data Type of Value
 
 
     @Autowired
-    public FakeStoreProductService(FakeStoryProductServiceClient fakeStoryProductServiceClient) {
+    public FakeStoreProductService(FakeStoryProductServiceClient fakeStoryProductServiceClient,
+                                   RedisTemplate<String, Object> redisTemplate) {
         this.fakeStoryProductServiceClient = fakeStoryProductServiceClient;
+        this.redisTemplate = redisTemplate;
     }
 
     private GenericProductDto convertFakeStoreProductIntoGenericProduct(FakeStoreProductDto fakeStoreProductDto) {
@@ -52,8 +58,27 @@ public class FakeStoreProductService implements ProductService {
 
     @Override
     public GenericProductDto getProductById(Long id) throws NotFoundException {
+        // KEY: 1_FAKESTORE
         System.out.println("In product service");
-        return convertFakeStoreProductIntoGenericProduct(fakeStoryProductServiceClient.getProductById(id));
+        // check if this product id already exists in my cache
+        GenericProductDto genericProductDto = (GenericProductDto) redisTemplate.opsForHash().get("PRODUCTS", id);
+
+        if (genericProductDto != null) {
+            System.out.println("Fetched from Cache");
+            return genericProductDto;
+        }
+
+         GenericProductDto genericProductDto1 = convertFakeStoreProductIntoGenericProduct(
+                 fakeStoryProductServiceClient.getProductById(id));
+        System.out.println("Fetching from API");
+         redisTemplate.opsForHash().put("PRODUCTS", id, genericProductDto1);
+        // if yes:
+        //    return from cache
+        // else:
+        //    make an api call to fakestore
+        //    save details in cache
+        //    return
+        return genericProductDto1;
     }
 
     @Override
